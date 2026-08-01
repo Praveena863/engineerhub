@@ -391,6 +391,248 @@
         section{padding:20px 16px;}
         h2.section-title{font-size:20px;}
     }
+
+    /* =====================================================
+       NEW: META INFO BAR (Reading time / Difficulty / Progress)
+    ===================================================== */
+    html{scroll-behavior:smooth;}
+    .meta-bar{
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+        padding:12px 6% 16px;
+        background:var(--white);
+        border-bottom:1px solid var(--border-gray);
+    }
+    .meta-chip{
+        background:var(--light-blue);
+        color:var(--primary-blue);
+        padding:6px 14px;
+        border-radius:20px;
+        font-size:13px;
+        font-weight:700;
+        border:1px solid var(--border-gray);
+    }
+
+    /* =====================================================
+       NEW: SCROLL-TRIGGERED FADE-IN FOR SECTIONS
+    ===================================================== */
+    section.fade-section{
+        opacity:0;
+        transform:translateY(24px);
+        transition:opacity 0.7s ease, transform 0.7s ease;
+    }
+    section.fade-section.visible{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+    /* =====================================================
+       NEW: ATOM — ELECTRON ORBIT ANIMATION
+    ===================================================== */
+    .electron-orbit{
+        position:absolute;
+        top:0;left:0;
+        width:100%;height:100%;
+        animation:orbitSpin 6s linear infinite;
+    }
+    @keyframes orbitSpin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+
+    /* =====================================================
+       NEW: CURRENT-FLOW / BULB-GLOW CIRCUIT ANIMATION
+    ===================================================== */
+    .circuit-anim{display:flex;justify-content:center;padding:16px 0;}
+    .circuit-track{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+    .battery-node,.bulb-node{font-size:30px;}
+    .bulb-node{animation:bulbGlow 1.6s ease-in-out infinite;display:inline-block;}
+    @keyframes bulbGlow{0%,100%{filter:drop-shadow(0 0 2px gold);} 50%{filter:drop-shadow(0 0 14px gold);}}
+    .wire-line{position:relative;width:180px;height:6px;background:var(--secondary-blue);border-radius:3px;overflow:hidden;}
+    .current-dot{position:absolute;top:-2px;left:-12px;width:10px;height:10px;border-radius:50%;background:var(--warning-orange);animation:flowRight 1.6s linear infinite;}
+    @keyframes flowRight{ from{left:-12px;} to{left:180px;} }
+
+    /* =====================================================
+       NEW: WATER-FLOW ANALOGY ANIMATION
+    ===================================================== */
+    .water-pipe{
+        width:100%;max-width:300px;height:26px;margin:14px auto;
+        background:#cfe8f7;border:2px solid var(--secondary-blue);
+        border-radius:14px;overflow:hidden;position:relative;
+    }
+    .water-fill{
+        position:absolute;top:0;left:-100%;width:200%;height:100%;
+        background:repeating-linear-gradient(45deg,var(--accent-blue) 0 10px,#64b5f6 10px 20px);
+        animation:waterMove 1.4s linear infinite;
+    }
+    @keyframes waterMove{ from{left:-100%;} to{left:0%;} }
+
+    /* =====================================================
+       NEW: LIGHTNING FLASH ANIMATION
+    ===================================================== */
+    .lightning-wrap{display:flex;justify-content:center;}
+    .lightning-svg .bolt{fill:#ffca28;animation:flash 2s infinite;}
+    @keyframes flash{0%,100%{opacity:0.2;} 10%{opacity:1;} 18%{opacity:0.3;} 26%{opacity:1;} 70%{opacity:0.2;}}
+
+    /* =====================================================
+       NEW: EDUCATIONAL ILLUSTRATION GALLERY
+    ===================================================== */
+    .illustration-grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+        gap:18px;
+        margin:18px 0;
+    }
+    .illustration-card{
+        background:var(--light-gray);
+        border:1px solid var(--border-gray);
+        border-radius:12px;
+        padding:16px;
+        text-align:center;
+        transition:transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .illustration-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+    .illustration-card svg{width:70px;height:70px;margin-bottom:8px;}
+    .illustration-card p{font-size:13.5px;font-weight:700;color:var(--primary-blue);margin:0;}
+
+    /* =====================================================
+       NEW: QUICK CHECK (inline mini quiz after each topic)
+    ===================================================== */
+    .quick-check{
+        background:#f1f8ff;
+        border:2px solid var(--accent-blue);
+        border-radius:12px;
+        padding:18px 20px;
+        margin:22px 0;
+    }
+    .quick-check h4{margin:0 0 10px;color:var(--primary-blue);font-size:16px;}
+    .qc-question{font-weight:700;margin-bottom:10px;}
+    .qc-options{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;margin-left:0;}
+    .qc-options label{
+        background:var(--white);
+        border:1px solid var(--border-gray);
+        border-radius:8px;
+        padding:8px 12px;
+        font-size:14.5px;
+        cursor:pointer;
+        display:flex;
+        align-items:center;
+        gap:8px;
+        transition:background 0.15s ease;
+        list-style:none;
+    }
+    .qc-options label:hover{background:var(--light-blue);}
+    .qc-options input:disabled{cursor:not-allowed;}
+    .qc-btn{
+        background:var(--primary-blue);
+        color:var(--white);
+        border:none;
+        padding:9px 18px;
+        border-radius:8px;
+        font-weight:700;
+        cursor:pointer;
+        font-size:14px;
+        transition:background 0.2s ease, transform 0.15s ease;
+    }
+    .qc-btn:hover{background:var(--secondary-blue);transform:translateY(-2px);}
+    .qc-result{margin-top:10px;font-size:14.5px;min-height:18px;}
+
+    /* =====================================================
+       NEW: INTERACTIVE END-OF-LESSON QUIZ
+    ===================================================== */
+    .quiz-progress-text{
+        display:flex;justify-content:space-between;
+        font-size:13px;font-weight:700;color:var(--gray-text);margin-bottom:6px;
+    }
+    .quiz-bar-bg{
+        width:100%;height:10px;background:var(--light-blue);
+        border-radius:20px;overflow:hidden;border:1px solid var(--border-gray);margin-bottom:22px;
+    }
+    .quiz-bar-fill{
+        width:0%;height:100%;
+        background:linear-gradient(90deg,var(--accent-blue),var(--primary-blue));
+        border-radius:20px;transition:width 0.4s ease;
+    }
+    .quiz-question-text{font-size:17px;font-weight:700;color:var(--primary-blue);margin-bottom:16px;}
+    .quiz-options-list{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;margin-left:0;}
+    .quiz-option{
+        background:var(--white);
+        border:2px solid var(--border-gray);
+        border-radius:10px;
+        padding:12px 16px;
+        font-size:15px;
+        cursor:pointer;
+        transition:all 0.2s ease;
+        list-style:none;
+    }
+    .quiz-option:hover:not(.locked){border-color:var(--accent-blue);background:var(--light-blue);}
+    .quiz-option.selected{border-color:var(--primary-blue);background:var(--light-blue);font-weight:700;}
+    .quiz-option.locked{cursor:not-allowed;}
+    .quiz-option.correct-opt{background:#e8f5e9;border-color:var(--success-green);font-weight:700;}
+    .quiz-option.wrong-opt{background:#fdecea;border-color:var(--danger-red);font-weight:700;}
+    .quiz-btn-row{display:flex;gap:12px;flex-wrap:wrap;}
+    .quiz-btn{
+        background:var(--primary-blue);color:var(--white);border:none;
+        padding:12px 24px;border-radius:10px;font-weight:700;font-size:14.5px;
+        cursor:pointer;transition:background 0.2s ease, transform 0.15s ease;
+    }
+    .quiz-btn:hover:not(:disabled){background:var(--secondary-blue);transform:translateY(-2px);}
+    .quiz-btn:disabled{background:#b0bec5;cursor:not-allowed;}
+    .quiz-feedback{margin-top:16px;padding:14px 16px;border-radius:10px;font-size:14.5px;background:var(--light-gray);min-height:20px;}
+    .feedback-correct{color:var(--success-green);font-weight:800;}
+    .feedback-wrong{color:var(--danger-red);font-weight:800;}
+
+    /* Quiz Results Screen */
+    .quiz-results-grid{
+        display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+        gap:14px;margin:20px 0;
+    }
+    .result-stat{
+        background:var(--light-blue);border-radius:12px;padding:18px 10px;text-align:center;
+        border:1px solid var(--border-gray);
+    }
+    .result-stat .stat-value{font-size:26px;font-weight:800;color:var(--primary-blue);}
+    .result-stat .stat-label{font-size:13px;color:var(--gray-text);margin-top:4px;}
+    .result-congrats{
+        background:#e8f5e9;border-left:6px solid var(--success-green);
+        padding:16px 18px;border-radius:10px;font-weight:700;color:var(--success-green);
+        margin:16px 0;text-align:center;font-size:16px;
+    }
+
+    /* =====================================================
+       NEW: LESSON COMPLETION PANEL
+    ===================================================== */
+    #lesson-complete{
+        display:none;
+        text-align:center;
+        background:linear-gradient(135deg,var(--light-blue),var(--white));
+        border:2px solid var(--accent-blue);
+    }
+    .badge-circle{
+        width:110px;height:110px;border-radius:50%;
+        background:linear-gradient(135deg,var(--accent-blue),var(--primary-blue));
+        color:var(--white);
+        display:flex;align-items:center;justify-content:center;
+        font-size:46px;margin:10px auto 16px;
+        box-shadow:0 6px 18px rgba(11,61,145,0.35);
+        animation:badgePop 0.6s ease;
+    }
+    @keyframes badgePop{ 0%{transform:scale(0);opacity:0;} 70%{transform:scale(1.15);opacity:1;} 100%{transform:scale(1);} }
+    .glow-btn{
+        background:linear-gradient(90deg,var(--accent-blue),var(--primary-blue));
+        animation:glowPulse 2s infinite;
+    }
+    @keyframes glowPulse{
+        0%{box-shadow:0 0 0 0 rgba(33,150,243,0.5);}
+        70%{box-shadow:0 0 0 12px rgba(33,150,243,0);}
+        100%{box-shadow:0 0 0 0 rgba(33,150,243,0);}
+    }
+
+    /* =====================================================
+       NEW: RESPECT REDUCED-MOTION PREFERENCE
+    ===================================================== */
+    @media (prefers-reduced-motion: reduce){
+        *{animation:none !important; transition:none !important;}
+        section.fade-section{opacity:1;transform:none;}
+    }
 </style>
 </head>
 <body>
@@ -420,14 +662,21 @@
         <span>Lesson 1 of 9 (Section 1)</span>
     </div>
     <div class="progress-bar-bg">
-        <div class="progress-bar-fill"></div>
+        <div class="progress-bar-fill" id="progress-bar-fill"></div>
     </div>
+</div>
+
+<!-- ===================== NEW: META INFO BAR ===================== -->
+<div class="meta-bar">
+    <span class="meta-chip">⏱ Reading Time: 12–15 min</span>
+    <span class="meta-chip">🟢 Difficulty: Beginner</span>
+    <span class="meta-chip">📌 Page Progress: <span id="completion-pct">0%</span></span>
 </div>
 
 <div class="container">
 
     <!-- ===================== LEARNING OBJECTIVES ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Learning Objectives</h2>
         <p>By the end of this lesson, you will be able to:</p>
         <ul class="objectives-list">
@@ -441,7 +690,7 @@
     </section>
 
     <!-- ===================== INTRODUCTION ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Welcome to Electrical Fundamentals</h2>
         <p>Welcome to the very first lesson of the <strong>Electrical Fundamentals</strong> course on EngineerHub! Whether you are a first-year Electrical and Electronics Engineering (EEE) student, a hobbyist who loves building circuits, or someone preparing for competitive exams and interviews, this course has been designed to take you from absolute zero to a strong, confident understanding of electricity.</p>
         <p>Electricity is the invisible force that powers almost everything around us — from the light bulb above your head to the smartphone in your pocket, from massive industrial machines to the tiny microchips inside a calculator. Yet, despite being so common, most people never truly understand what electricity actually is. In this lesson, we will build that understanding from the ground up, using simple language, real-life analogies, and clear diagrams.</p>
@@ -449,7 +698,7 @@
     </section>
 
     <!-- ===================== WHAT IS ELECTRICITY ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">What is Electricity?</h2>
 
         <h3>Scientific Definition</h3>
@@ -470,12 +719,21 @@
             <div class="diagram-title">Diagram: Atomic Structure — Source of Electricity</div>
             <div class="atom-diagram">
                 <div class="nucleus">Nucleus<br>(P+ N)</div>
-                <div class="electron"></div>
-                <div class="electron e2"></div>
-                <div class="electron e3"></div>
-                <div class="electron e4"></div>
+                <div class="electron-orbit">
+                    <div class="electron"></div>
+                    <div class="electron e2"></div>
+                    <div class="electron e3"></div>
+                    <div class="electron e4"></div>
+                </div>
             </div>
-            <p style="font-size:13px;color:#607d8b;">Electrons (orange dots) revolve around the nucleus. When electrons are pushed to move from one atom to another, electricity is generated.</p>
+            <p style="font-size:13px;color:#607d8b;">⚛ Animation: Electrons (orange dots) continuously revolve around the nucleus. When electrons are pushed to move from one atom to another, electricity is generated.</p>
+        </div>
+
+        <!-- NEW: Water Flow Analogy Animation -->
+        <div class="diagram-box">
+            <div class="diagram-title">Animation: Water Flow Analogy</div>
+            <div class="water-pipe"><div class="water-fill"></div></div>
+            <p style="font-size:13px;color:#607d8b;">💧 Just as water flows through a pipe because of pressure, electrons flow through a wire because of voltage (electrical pressure).</p>
         </div>
 
         <div class="diagram-box">
@@ -490,10 +748,41 @@
                 <div class="flow-box">Back to Battery</div>
             </div>
         </div>
+
+        <!-- NEW: Animated Current Flow + Bulb Glow -->
+        <div class="diagram-box">
+            <div class="diagram-title">Animation: Current Flowing in a Closed Circuit</div>
+            <div class="circuit-anim">
+                <div class="circuit-track">
+                    <span class="battery-node" title="Battery">🔋</span>
+                    <div class="wire-line">
+                        <span class="current-dot"></span>
+                        <span class="current-dot" style="animation-delay:0.5s;"></span>
+                        <span class="current-dot" style="animation-delay:1s;"></span>
+                    </div>
+                    <span class="bulb-node" title="Bulb">💡</span>
+                </div>
+            </div>
+            <p style="font-size:13px;color:#607d8b;">The orange dots represent electrons flowing continuously from the battery, through the wire, lighting up the bulb.</p>
+        </div>
+
+        <!-- NEW: Quick Check 1 -->
+        <div class="quick-check" id="qc1-box">
+            <h4>⚡ Quick Check</h4>
+            <p class="qc-question">What actually moves inside a conductor to create electric current?</p>
+            <div class="qc-options">
+                <label><input type="radio" name="qc1" value="wrong">Protons</label>
+                <label><input type="radio" name="qc1" value="correct">Electrons</label>
+                <label><input type="radio" name="qc1" value="wrong">Neutrons</label>
+                <label><input type="radio" name="qc1" value="wrong">Whole Atoms</label>
+            </div>
+            <button class="qc-btn" onclick="checkQuickAnswer('qc1','qc1-result','Electrons are the negatively charged particles that drift through a conductor from atom to atom, creating electric current.')">Check Answer</button>
+            <div class="qc-result" id="qc1-result"></div>
+        </div>
     </section>
 
     <!-- ===================== WHY LEARN ELECTRICITY ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Why Learn Electricity?</h2>
         <p>You might wonder — why should I spend time deeply understanding something as "basic" as electricity? The answer is simple: <strong>every single concept in Electrical and Electronics Engineering is built on top of this foundation.</strong> Without a clear understanding of what electricity is, concepts like voltage, current, resistance, power, AC/DC, transformers, and even complex power systems or electronics will feel confusing.</p>
 
@@ -526,7 +815,7 @@
     </section>
 
     <!-- ===================== CHARACTERISTICS ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Characteristics of Electricity</h2>
         <p>Electricity has several defining characteristics that separate it from other forms of energy. Understanding these characteristics helps engineers predict how electrical systems will behave under different conditions.</p>
 
@@ -548,10 +837,24 @@
             <tr><td>Resistance</td><td>Opposition to the flow of current, measured in Ohms (Ω).</td></tr>
             <tr><td>Power</td><td>Rate at which electrical energy is used or converted, measured in Watts (W).</td></tr>
         </table>
+
+        <!-- NEW: Quick Check 2 -->
+        <div class="quick-check" id="qc2-box">
+            <h4>⚡ Quick Check</h4>
+            <p class="qc-question">Which quantity represents the "pressure" that pushes electric charge to flow?</p>
+            <div class="qc-options">
+                <label><input type="radio" name="qc2" value="wrong">Current</label>
+                <label><input type="radio" name="qc2" value="correct">Voltage</label>
+                <label><input type="radio" name="qc2" value="wrong">Resistance</label>
+                <label><input type="radio" name="qc2" value="wrong">Power</label>
+            </div>
+            <button class="qc-btn" onclick="checkQuickAnswer('qc2','qc2-result','Voltage is the electrical pressure (measured in Volts) that pushes charge through a circuit, similar to water pressure in a pipe.')">Check Answer</button>
+            <div class="qc-result" id="qc2-result"></div>
+        </div>
     </section>
 
     <!-- ===================== INTERESTING FACTS ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Interesting Facts about Electricity</h2>
         <div class="card-grid">
             <div class="card">
@@ -572,6 +875,17 @@
             </div>
         </div>
 
+        <!-- NEW: Lightning Animation -->
+        <div class="diagram-box">
+            <div class="diagram-title">Animation: Lightning — Nature's Static Discharge</div>
+            <div class="lightning-wrap">
+                <svg class="lightning-svg" viewBox="0 0 100 150" width="80" height="120" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="60,0 20,80 45,80 35,150 85,60 55,60" class="bolt"/>
+                </svg>
+            </div>
+            <p style="font-size:13px;color:#607d8b;">⚡ Lightning is a giant, natural spark caused by the sudden discharge of built-up static electricity between clouds and the ground.</p>
+        </div>
+
         <div class="box tip-box">
             <div class="box-title">💡 Tip</div>
             Try relating every new electrical concept you learn to something you already see in daily life — this dramatically improves retention and understanding.
@@ -579,7 +893,7 @@
     </section>
 
     <!-- ===================== APPLICATIONS OVERVIEW ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Applications Overview</h2>
         <p>Electricity finds its application in virtually every sector of modern society. Below is a broad overview; we will explore each of these areas in much greater depth in upcoming lessons.</p>
 
@@ -597,10 +911,24 @@
             <div class="box-title">⚠ Warning</div>
             Never touch electrical equipment or wires with wet hands, and always ensure the power supply is switched off before inspecting any circuit. Electrical safety will be covered in detail in Lesson 1.7.
         </div>
+
+        <!-- NEW: Quick Check 3 -->
+        <div class="quick-check" id="qc3-box">
+            <h4>⚡ Quick Check</h4>
+            <p class="qc-question">Which of these is a medical application of electricity?</p>
+            <div class="qc-options">
+                <label><input type="radio" name="qc3" value="wrong">Conveyor Belt</label>
+                <label><input type="radio" name="qc3" value="wrong">Irrigation Pump</label>
+                <label><input type="radio" name="qc3" value="correct">ECG Monitor</label>
+                <label><input type="radio" name="qc3" value="wrong">Traffic Signal</label>
+            </div>
+            <button class="qc-btn" onclick="checkQuickAnswer('qc3','qc3-result','An ECG (Electrocardiogram) monitor uses electrical signals to track heart activity, making it a key medical application of electricity.')">Check Answer</button>
+            <div class="qc-result" id="qc3-result"></div>
+        </div>
     </section>
 
     <!-- ===================== LEARNING ROADMAP ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Learning Roadmap for This Course</h2>
         <p>Here is what you can expect as you progress through the "Electrical Fundamentals" course:</p>
         <ol>
@@ -616,8 +944,73 @@
         <p>Each lesson builds upon the previous one, so make sure to complete them in order for the best learning experience.</p>
     </section>
 
+    <!-- ===================== NEW: EDUCATIONAL ILLUSTRATIONS ===================== -->
+    <section class="fade-section">
+        <h2 class="section-title">Educational Illustrations: Key Components</h2>
+        <p>Here are simple visual illustrations of the real-world components you'll encounter throughout this course, drawn using pure HTML/CSS/SVG.</p>
+        <div class="illustration-grid">
+            <div class="illustration-card">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="20" width="38" height="24" rx="4" fill="#0b3d91"/>
+                    <rect x="48" y="27" width="6" height="10" fill="#0b3d91"/>
+                    <rect x="16" y="26" width="10" height="12" fill="#2196f3"/>
+                    <rect x="30" y="26" width="10" height="12" fill="#64b5f6"/>
+                </svg>
+                <p>Battery</p>
+            </div>
+            <div class="illustration-card">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="26" r="16" fill="#ffca28"/>
+                    <rect x="26" y="40" width="12" height="6" fill="#90a4ae"/>
+                    <rect x="27" y="46" width="10" height="6" fill="#607d8b"/>
+                    <path d="M24 24 L28 30 M40 24 L36 30 M32 12 L32 18" stroke="#0b3d91" stroke-width="2"/>
+                </svg>
+                <p>Light Bulb</p>
+            </div>
+            <div class="illustration-card">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="6" y="28" width="52" height="8" rx="4" fill="#d2691e" stroke="#8b4513" stroke-width="1"/>
+                    <circle cx="14" cy="32" r="2.5" fill="#fff"/>
+                    <circle cx="26" cy="32" r="2.5" fill="#fff"/>
+                    <circle cx="38" cy="32" r="2.5" fill="#fff"/>
+                    <circle cx="50" cy="32" r="2.5" fill="#fff"/>
+                </svg>
+                <p>Copper Conductor</p>
+            </div>
+            <div class="illustration-card">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="34" width="44" height="20" fill="#90a4ae"/>
+                    <path d="M18 34 Q18 20 26 20 Q34 20 34 34 Z" fill="#b0bec5"/>
+                    <rect x="38" y="10" width="6" height="24" fill="#78909c"/>
+                    <circle cx="41" cy="8" r="4" fill="#cfd8dc"/>
+                </svg>
+                <p>Power Plant</p>
+            </div>
+            <div class="illustration-card">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="20" width="48" height="28" fill="#1565c0"/>
+                    <line x1="8" y1="27" x2="56" y2="27" stroke="#fff" stroke-width="1.5"/>
+                    <line x1="8" y1="34" x2="56" y2="34" stroke="#fff" stroke-width="1.5"/>
+                    <line x1="8" y1="41" x2="56" y2="41" stroke="#fff" stroke-width="1.5"/>
+                    <line x1="20" y1="20" x2="20" y2="48" stroke="#fff" stroke-width="1.5"/>
+                    <line x1="32" y1="20" x2="32" y2="48" stroke="#fff" stroke-width="1.5"/>
+                    <line x1="44" y1="20" x2="44" y2="48" stroke="#fff" stroke-width="1.5"/>
+                </svg>
+                <p>Solar Panel</p>
+            </div>
+            <div class="illustration-card">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M32 6 L20 58 M32 6 L44 58 M24 20 L40 20 M22 34 L42 34 M20 48 L44 48" stroke="#0b3d91" stroke-width="2" fill="none"/>
+                    <circle cx="24" cy="20" r="2" fill="#e65100"/>
+                    <circle cx="40" cy="20" r="2" fill="#e65100"/>
+                </svg>
+                <p>Transmission Tower</p>
+            </div>
+        </div>
+    </section>
+
     <!-- ===================== ADVANTAGES / DISADVANTAGES ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Advantages and Limitations of Electrical Energy</h2>
         <div class="adv-disadv">
             <div class="adv-box">
@@ -642,7 +1035,7 @@
     </section>
 
     <!-- ===================== COMMON MISTAKES ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Common Mistakes Beginners Make</h2>
         <ul>
             <li>Confusing "electricity" with just "current" — electricity is a broader phenomenon that includes charge, current, voltage, and fields.</li>
@@ -653,7 +1046,7 @@
     </section>
 
     <!-- ===================== INTERVIEW QUESTIONS ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Interview Questions with Answers</h2>
 
         <div class="qa-item">
@@ -683,7 +1076,7 @@
     </section>
 
     <!-- ===================== KEY POINTS ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Key Points to Remember</h2>
         <ul class="keypoints-list">
             <li>Electricity is the flow of electric charge, usually electrons, through a conductor.</li>
@@ -695,128 +1088,58 @@
     </section>
 
     <!-- ===================== SUMMARY ===================== -->
-    <section>
+    <section class="fade-section">
         <h2 class="section-title">Summary</h2>
         <p>In this lesson, we introduced the concept of electricity from both a scientific and everyday perspective. We learned that electricity is the movement of electric charge (electrons) through a conductor, and explored why understanding this basic concept is critical for anyone studying Electrical and Electronics Engineering. We also looked at the key characteristics of electricity, some fascinating facts, a broad overview of its applications, and the roadmap for the rest of this course. With this strong foundation, you are now ready to explore the fascinating history of electricity in the next lesson.</p>
     </section>
 
-    <!-- ===================== MCQs ===================== -->
-    <section>
-        <h2 class="section-title">10 Multiple Choice Questions</h2>
+    <!-- ===================== NEW: INTERACTIVE QUIZ (replaces static MCQ list) ===================== -->
+    <section class="fade-section">
+        <h2 class="section-title">Interactive Quiz: Test Your Knowledge</h2>
+        <p>Answer all 10 questions one at a time. Select an option, submit your answer to see instant feedback with an explanation, then move to the next question. Your final score card appears at the end.</p>
 
-        <div class="mcq-item">
-            <p class="question">1. Electricity is fundamentally the flow of:</p>
-            <ul class="mcq-options">
-                <li>A) Protons</li>
-                <li>B) Neutrons</li>
-                <li>C) Electrons</li>
-                <li>D) Photons</li>
-            </ul>
-            <div class="answer-reveal">Answer: C) Electrons</div>
+        <div id="quiz-active">
+            <div class="quiz-progress-text">
+                <span id="quiz-progress">Question 1 of 10</span>
+                <span id="quiz-score-live">Score: 0</span>
+            </div>
+            <div class="quiz-bar-bg"><div class="quiz-bar-fill" id="quiz-bar-fill"></div></div>
+
+            <p class="quiz-question-text" id="quiz-question"></p>
+            <div class="quiz-options-list" id="quiz-options"></div>
+
+            <div class="quiz-feedback" id="quiz-feedback"></div>
+
+            <div class="quiz-btn-row" style="margin-top:16px;">
+                <button class="quiz-btn" id="submit-answer-btn" onclick="submitAnswer()" disabled>Submit Answer</button>
+                <button class="quiz-btn" id="next-question-btn" onclick="nextQuestion()" style="display:none;">Next Question →</button>
+            </div>
         </div>
 
-        <div class="mcq-item">
-            <p class="question">2. Which unit is used to measure electric current?</p>
-            <ul class="mcq-options">
-                <li>A) Volt</li>
-                <li>B) Ampere</li>
-                <li>C) Ohm</li>
-                <li>D) Watt</li>
-            </ul>
-            <div class="answer-reveal">Answer: B) Ampere</div>
-        </div>
-
-        <div class="mcq-item">
-            <p class="question">3. Which of the following is a good conductor of electricity?</p>
-            <ul class="mcq-options">
-                <li>A) Rubber</li>
-                <li>B) Wood</li>
-                <li>C) Copper</li>
-                <li>D) Plastic</li>
-            </ul>
-            <div class="answer-reveal">Answer: C) Copper</div>
-        </div>
-
-        <div class="mcq-item">
-            <p class="question">4. Voltage is also known as:</p>
-            <ul class="mcq-options">
-                <li>A) Electric current</li>
-                <li>B) Electric pressure</li>
-                <li>C) Electric resistance</li>
-                <li>D) Electric power</li>
-            </ul>
-            <div class="answer-reveal">Answer: B) Electric pressure</div>
-        </div>
-
-        <div class="mcq-item">
-            <p class="question">5. Which of these devices converts electricity into light?</p>
-            <ul class="mcq-options">
-                <li>A) Motor</li>
-                <li>B) Bulb</li>
-                <li>C) Heater</li>
-                <li>D) Speaker</li>
-            </ul>
-            <div class="answer-reveal">Answer: B) Bulb</div>
-        </div>
-
-        <div class="mcq-item">
-            <p class="question">6. What is the SI unit of resistance?</p>
-            <ul class="mcq-options">
-                <li>A) Ohm</li>
-                <li>B) Volt</li>
-                <li>C) Ampere</li>
-                <li>D) Joule</li>
-            </ul>
-            <div class="answer-reveal">Answer: A) Ohm</div>
-        </div>
-
-        <div class="mcq-item">
-            <p class="question">7. Which of the following is NOT a source of electricity?</p>
-            <ul class="mcq-options">
-                <li>A) Solar Panel</li>
-                <li>B) Battery</li>
-                <li>C) Wind Turbine</li>
-                <li>D) Wooden Chair</li>
-            </ul>
-            <div class="answer-reveal">Answer: D) Wooden Chair</div>
-        </div>
-
-        <div class="mcq-item">
-            <p class="question">8. Electric current is measured using which instrument?</p>
-            <ul class="mcq-options">
-                <li>A) Voltmeter</li>
-                <li>B) Ammeter</li>
-                <li>C) Ohmmeter</li>
-                <li>D) Wattmeter</li>
-            </ul>
-            <div class="answer-reveal">Answer: B) Ammeter</div>
-        </div>
-
-        <div class="mcq-item">
-            <p class="question">9. Which of these best describes an insulator?</p>
-            <ul class="mcq-options">
-                <li>A) Allows electricity to flow easily</li>
-                <li>B) Blocks the flow of electricity</li>
-                <li>C) Generates electricity</li>
-                <li>D) Stores electricity permanently</li>
-            </ul>
-            <div class="answer-reveal">Answer: B) Blocks the flow of electricity</div>
-        </div>
-
-        <div class="mcq-item">
-            <p class="question">10. Electrical power is measured in:</p>
-            <ul class="mcq-options">
-                <li>A) Volts</li>
-                <li>B) Amperes</li>
-                <li>C) Ohms</li>
-                <li>D) Watts</li>
-            </ul>
-            <div class="answer-reveal">Answer: D) Watts</div>
+        <div id="quiz-results" style="display:none;">
+            <h3 style="color:var(--primary-blue);">Your Quiz Results</h3>
+            <div class="quiz-results-grid">
+                <div class="result-stat"><div class="stat-value" id="result-score">0/10</div><div class="stat-label">Total Score</div></div>
+                <div class="result-stat"><div class="stat-value" id="result-correct">0</div><div class="stat-label">Correct Answers</div></div>
+                <div class="result-stat"><div class="stat-value" id="result-wrong">0</div><div class="stat-label">Wrong Answers</div></div>
+                <div class="result-stat"><div class="stat-value" id="result-percentage">0%</div><div class="stat-label">Percentage</div></div>
+            </div>
+            <div class="result-congrats" id="result-congrats" style="display:none;"></div>
+            <button class="quiz-btn" onclick="restartQuiz()">🔄 Try Again</button>
         </div>
     </section>
 
+    <!-- ===================== NEW: LESSON COMPLETION PANEL ===================== -->
+    <section class="fade-section" id="lesson-complete">
+        <div class="badge-circle">🏅</div>
+        <h2 class="section-title" style="justify-content:center;border-bottom:none;">🎉 Congratulations!</h2>
+        <p style="font-size:16px;font-weight:600;">You have completed <strong>Lesson 1: Introduction to Electricity</strong>.</p>
+        <p>You've built a strong foundation in what electricity is, why it matters, and how it behaves. You're now ready to move on to the next lesson.</p>
+        <a href="lesson1_1.html" class="nav-btn glow-btn" style="display:inline-block;max-width:320px;margin:18px auto 0;">Next Lesson: History of Electricity →</a>
+    </section>
+
     <!-- ===================== NAVIGATION ===================== -->
-    <section>
+    <section class="fade-section">
         <div class="nav-buttons">
             <a href="electrical.html" class="nav-btn">← Previous: Course Home</a>
             <a href="lesson1_1.html" class="nav-btn">Next: History of Electricity →</a>
@@ -835,6 +1158,194 @@
     </div>
     <p>&copy; 2026 EngineerHub. All rights reserved. | Built for Electrical &amp; Electronics Engineering Students.</p>
 </footer>
+
+<!-- ===================== NEW: INTERACTIVE JAVASCRIPT ===================== -->
+<script>
+/* ---------- 1. Scroll-triggered fade-in for every section ---------- */
+const fadeSections = document.querySelectorAll('.fade-section');
+const fadeObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+},{threshold:0.12});
+fadeSections.forEach(sec=>fadeObserver.observe(sec));
+
+/* ---------- 2. Live "Topic Completion" progress bar (scroll based) ---------- */
+const progressFill   = document.getElementById('progress-bar-fill');
+const completionText = document.getElementById('completion-pct');
+function updateScrollProgress(){
+    const scrollTop    = window.scrollY;
+    const docHeight    = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? Math.min(100, Math.round((scrollTop / docHeight) * 100)) : 0;
+    if(progressFill)   progressFill.style.width = pct + '%';
+    if(completionText) completionText.textContent = pct + '%';
+}
+window.addEventListener('scroll', updateScrollProgress);
+window.addEventListener('load', updateScrollProgress);
+
+/* ---------- 3. Quick Check (mini in-topic quiz) logic ---------- */
+function checkQuickAnswer(groupName, resultId, explanation){
+    const selected  = document.querySelector('input[name="' + groupName + '"]:checked');
+    const resultBox = document.getElementById(resultId);
+    if(!selected){
+        resultBox.innerHTML = '<span style="color:var(--warning-orange);font-weight:700;">⚠ Please select an option first.</span>';
+        return;
+    }
+    if(selected.value === 'correct'){
+        resultBox.innerHTML = '<span class="feedback-correct">✔ Correct!</span> ' + explanation;
+    } else {
+        resultBox.innerHTML = '<span class="feedback-wrong">✘ Wrong!</span> ' + explanation;
+    }
+    /* Lock the options so the answer can't be changed after submitting */
+    document.getElementsByName(groupName).forEach(radio => radio.disabled = true);
+}
+
+/* ---------- 4. Full Interactive End-of-Lesson Quiz Engine ---------- */
+const quizData = [
+    {q:"Electricity is fundamentally the flow of:", options:["Protons","Neutrons","Electrons","Photons"], answer:2,
+     explain:"Electricity is the flow of electrons — the negatively charged particles that orbit an atom's nucleus."},
+    {q:"Which unit is used to measure electric current?", options:["Volt","Ampere","Ohm","Watt"], answer:1,
+     explain:"Electric current is measured in Amperes (A), named after André-Marie Ampère."},
+    {q:"Which of the following is a good conductor of electricity?", options:["Rubber","Wood","Copper","Plastic"], answer:2,
+     explain:"Copper has many free electrons and very low resistivity, making it an excellent, cost-effective conductor."},
+    {q:"Voltage is also known as:", options:["Electric current","Electric pressure","Electric resistance","Electric power"], answer:1,
+     explain:"Voltage is the 'electrical pressure' that pushes charge through a circuit, just like water pressure pushes water through a pipe."},
+    {q:"Which of these devices converts electricity into light?", options:["Motor","Bulb","Heater","Speaker"], answer:1,
+     explain:"A bulb converts electrical energy into light energy (and a small amount of heat)."},
+    {q:"What is the SI unit of resistance?", options:["Ohm","Volt","Ampere","Joule"], answer:0,
+     explain:"Resistance is measured in Ohms (Ω), named after Georg Simon Ohm."},
+    {q:"Which of the following is NOT a source of electricity?", options:["Solar Panel","Battery","Wind Turbine","Wooden Chair"], answer:3,
+     explain:"A wooden chair is an insulator — it cannot generate or conduct electricity."},
+    {q:"Electric current is measured using which instrument?", options:["Voltmeter","Ammeter","Ohmmeter","Wattmeter"], answer:1,
+     explain:"An Ammeter is connected in series in a circuit to measure the current flowing through it."},
+    {q:"Which of these best describes an insulator?", options:["Allows electricity to flow easily","Blocks the flow of electricity","Generates electricity","Stores electricity permanently"], answer:1,
+     explain:"Insulators such as rubber and plastic block the flow of electric charge, which is why they're used to cover wires."},
+    {q:"Electrical power is measured in:", options:["Volts","Amperes","Ohms","Watts"], answer:3,
+     explain:"Electrical power — the rate at which electrical energy is used or converted — is measured in Watts (W)."}
+];
+
+let currentQ = 0, score = 0, correctCount = 0, wrongCount = 0, selectedOption = null, answered = false;
+
+function loadQuestion(){
+    answered = false;
+    selectedOption = null;
+    const data = quizData[currentQ];
+
+    document.getElementById('quiz-progress').textContent = 'Question ' + (currentQ + 1) + ' of ' + quizData.length;
+    document.getElementById('quiz-score-live').textContent = 'Score: ' + score;
+    document.getElementById('quiz-question').textContent = data.q;
+
+    const optsBox = document.getElementById('quiz-options');
+    optsBox.innerHTML = '';
+    data.options.forEach((opt, i) => {
+        const div = document.createElement('div');
+        div.className = 'quiz-option';
+        div.textContent = String.fromCharCode(65 + i) + ') ' + opt;
+        div.onclick = () => selectOption(div, i);
+        optsBox.appendChild(div);
+    });
+
+    document.getElementById('quiz-feedback').innerHTML = '';
+    document.getElementById('submit-answer-btn').style.display = 'inline-block';
+    document.getElementById('submit-answer-btn').disabled = true;
+    document.getElementById('next-question-btn').style.display = 'none';
+    updateQuizBar();
+}
+
+function selectOption(el, i){
+    if(answered) return;
+    document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedOption = i;
+    document.getElementById('submit-answer-btn').disabled = false;
+}
+
+function submitAnswer(){
+    if(selectedOption === null || answered) return;
+    answered = true;
+    const data = quizData[currentQ];
+    const opts = document.querySelectorAll('.quiz-option');
+
+    opts.forEach((o, i) => {
+        o.classList.add('locked');
+        if(i === data.answer) o.classList.add('correct-opt');
+        else if(i === selectedOption) o.classList.add('wrong-opt');
+    });
+
+    const feedback = document.getElementById('quiz-feedback');
+    if(selectedOption === data.answer){
+        score++; correctCount++;
+        feedback.innerHTML = '<span class="feedback-correct">✔ Correct!</span> ' + data.explain;
+    } else {
+        wrongCount++;
+        feedback.innerHTML = '<span class="feedback-wrong">✘ Incorrect!</span> Correct answer: ' +
+            String.fromCharCode(65 + data.answer) + ') ' + data.options[data.answer] + '. ' + data.explain;
+    }
+
+    document.getElementById('quiz-score-live').textContent = 'Score: ' + score;
+    document.getElementById('submit-answer-btn').style.display = 'none';
+    document.getElementById('next-question-btn').style.display = 'inline-block';
+}
+
+function nextQuestion(){
+    currentQ++;
+    if(currentQ < quizData.length){
+        loadQuestion();
+    } else {
+        showResults();
+    }
+}
+
+function updateQuizBar(){
+    const pct = (currentQ / quizData.length) * 100;
+    document.getElementById('quiz-bar-fill').style.width = pct + '%';
+}
+
+function showResults(){
+    document.getElementById('quiz-active').style.display = 'none';
+    const resultsBox = document.getElementById('quiz-results');
+    resultsBox.style.display = 'block';
+
+    const percentage = Math.round((score / quizData.length) * 100);
+    document.getElementById('result-score').textContent = score + '/' + quizData.length;
+    document.getElementById('result-correct').textContent = correctCount;
+    document.getElementById('result-wrong').textContent = wrongCount;
+    document.getElementById('result-percentage').textContent = percentage + '%';
+
+    const congrats = document.getElementById('result-congrats');
+    if(percentage >= 80){
+        congrats.style.display = 'block';
+        congrats.textContent = '🎉 Excellent! You have mastered this lesson.';
+    } else {
+        congrats.style.display = 'none';
+    }
+
+    document.getElementById('quiz-bar-fill').style.width = '100%';
+    revealLessonComplete();
+}
+
+function restartQuiz(){
+    currentQ = 0; score = 0; correctCount = 0; wrongCount = 0;
+    document.getElementById('quiz-results').style.display = 'none';
+    document.getElementById('quiz-active').style.display = 'block';
+    document.getElementById('lesson-complete').style.display = 'none';
+    document.getElementById('lesson-complete').classList.remove('visible');
+    loadQuestion();
+}
+
+function revealLessonComplete(){
+    const box = document.getElementById('lesson-complete');
+    box.style.display = 'block';
+    /* Ensure the fade-in class is applied immediately since it may already be in-view */
+    box.classList.add('visible');
+    box.scrollIntoView({behavior: 'smooth', block: 'center'});
+}
+
+/* Initialize the first quiz question on page load */
+document.addEventListener('DOMContentLoaded', loadQuestion);
+</script>
 
 </body>
 </html>
