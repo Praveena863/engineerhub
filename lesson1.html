@@ -3,139 +3,838 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Lesson 1 - Introduction to Electricity</title>
-
+<title>EngineerHub | Electrical Fundamentals - Lesson 1: Introduction to Electricity</title>
 <style>
+    /* ===================== ROOT VARIABLES ===================== */
+    :root{
+        --primary-blue:#0b3d91;
+        --secondary-blue:#1565c0;
+        --light-blue:#e3f2fd;
+        --accent-blue:#2196f3;
+        --white:#ffffff;
+        --gray-text:#37474f;
+        --light-gray:#f4f7fb;
+        --border-gray:#d0dce9;
+        --success-green:#2e7d32;
+        --warning-orange:#e65100;
+        --danger-red:#c62828;
+        --shadow:0 4px 14px rgba(11,61,145,0.10);
+    }
 
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f7fb;
-}
+    /* ===================== RESET ===================== */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+        font-family:'Segoe UI', Arial, sans-serif;
+        background:var(--light-gray);
+        color:var(--gray-text);
+        line-height:1.7;
+    }
+    a{text-decoration:none;}
+    img{max-width:100%;}
 
-header{
-    background:#0b5ed7;
-    color:white;
-    padding:20px;
-    text-align:center;
-}
+    /* ===================== HEADER ===================== */
+    header.main-header{
+        background:linear-gradient(90deg,var(--primary-blue),var(--secondary-blue));
+        color:var(--white);
+        padding:18px 6%;
+        box-shadow:var(--shadow);
+        position:sticky;
+        top:0;
+        z-index:100;
+    }
+    .header-top{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:10px;
+    }
+    .logo-title{
+        display:flex;
+        align-items:center;
+        gap:12px;
+    }
+    .logo-icon{
+        width:44px;height:44px;
+        background:var(--white);
+        color:var(--primary-blue);
+        border-radius:10px;
+        display:flex;align-items:center;justify-content:center;
+        font-weight:800;font-size:20px;
+    }
+    .logo-text h1{font-size:22px;letter-spacing:1px;}
+    .logo-text span{font-size:12px;opacity:0.85;}
+    .course-info{
+        text-align:right;
+        font-size:14px;
+    }
+    .course-info strong{display:block;font-size:16px;}
+    .breadcrumb{
+        margin-top:10px;
+        font-size:13px;
+        opacity:0.9;
+    }
 
-.container{
-    width:90%;
-    max-width:900px;
-    margin:30px auto;
-}
+    /* ===================== PROGRESS BAR ===================== */
+    .progress-wrapper{
+        background:var(--white);
+        padding:14px 6%;
+        border-bottom:1px solid var(--border-gray);
+    }
+    .progress-label{
+        display:flex;
+        justify-content:space-between;
+        font-size:13px;
+        margin-bottom:6px;
+        color:var(--gray-text);
+        font-weight:600;
+    }
+    .progress-bar-bg{
+        width:100%;
+        height:12px;
+        background:var(--light-blue);
+        border-radius:20px;
+        overflow:hidden;
+        border:1px solid var(--border-gray);
+    }
+    .progress-bar-fill{
+        width:6%;
+        height:100%;
+        background:linear-gradient(90deg,var(--accent-blue),var(--primary-blue));
+        border-radius:20px;
+    }
 
-.lesson-box{
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,.15);
-}
+    /* ===================== CONTAINER ===================== */
+    .container{
+        max-width:1000px;
+        margin:0 auto;
+        padding:30px 5%;
+    }
 
-h2{
-    color:#0b5ed7;
-}
+    section{
+        background:var(--white);
+        border:1px solid var(--border-gray);
+        border-radius:14px;
+        padding:28px 30px;
+        margin-bottom:28px;
+        box-shadow:var(--shadow);
+    }
 
-p{
-    line-height:1.8;
-    color:#444;
-}
+    h2.section-title{
+        color:var(--primary-blue);
+        font-size:24px;
+        margin-bottom:16px;
+        padding-bottom:10px;
+        border-bottom:3px solid var(--light-blue);
+        display:flex;
+        align-items:center;
+        gap:10px;
+    }
+    h2.section-title::before{
+        content:"";
+        width:8px;height:24px;
+        background:var(--accent-blue);
+        border-radius:4px;
+        display:inline-block;
+    }
+    h3{
+        color:var(--secondary-blue);
+        margin:18px 0 10px;
+        font-size:19px;
+    }
+    p{margin-bottom:14px;font-size:15.5px;color:var(--gray-text);}
+    ul,ol{margin:10px 0 16px 22px;}
+    li{margin-bottom:8px;font-size:15.5px;}
 
-.btn-group{
-    margin-top:30px;
-}
+    /* ===================== OBJECTIVES ===================== */
+    .objectives-list li{
+        list-style:none;
+        background:var(--light-blue);
+        padding:10px 16px;
+        margin-bottom:10px;
+        border-radius:8px;
+        border-left:4px solid var(--accent-blue);
+        margin-left:0;
+    }
+    .objectives-list{margin-left:0;}
 
-.btn{
-    display:inline-block;
-    background:#0b5ed7;
-    color:white;
-    text-decoration:none;
-    padding:12px 25px;
-    border-radius:6px;
-    margin-right:10px;
-}
+    /* ===================== INFO / NOTE / WARNING / TIP BOXES ===================== */
+    .box{
+        padding:18px 20px;
+        border-radius:10px;
+        margin:20px 0;
+        border-left:6px solid;
+    }
+    .box-title{
+        font-weight:700;
+        margin-bottom:8px;
+        display:flex;
+        align-items:center;
+        gap:8px;
+        font-size:15px;
+    }
+    .info-box{background:#eaf3ff;border-color:var(--accent-blue);}
+    .note-box{background:#fff8e1;border-color:#f9a825;}
+    .warning-box{background:#fdecea;border-color:var(--danger-red);}
+    .tip-box{background:#e8f5e9;border-color:var(--success-green);}
 
-.btn:hover{
-    background:#084298;
-}
+    /* ===================== TABLES ===================== */
+    table{
+        width:100%;
+        border-collapse:collapse;
+        margin:18px 0;
+        font-size:14.5px;
+    }
+    th,td{
+        border:1px solid var(--border-gray);
+        padding:10px 12px;
+        text-align:left;
+    }
+    th{
+        background:var(--primary-blue);
+        color:var(--white);
+    }
+    tr:nth-child(even){background:var(--light-blue);}
 
-.progress{
-    background:#ddd;
-    border-radius:20px;
-    overflow:hidden;
-    margin-bottom:25px;
-}
+    /* ===================== DIAGRAM BOX ===================== */
+    .diagram-box{
+        background:var(--light-gray);
+        border:2px dashed var(--accent-blue);
+        border-radius:12px;
+        padding:26px;
+        text-align:center;
+        margin:20px 0;
+    }
+    .diagram-title{
+        font-weight:700;
+        color:var(--primary-blue);
+        margin-bottom:14px;
+    }
 
-.progress-bar{
-    width:14%;
-    background:#0b5ed7;
-    color:white;
-    text-align:center;
-    padding:8px 0;
-}
+    /* Simple CSS Diagram: Electricity flow */
+    .flow-diagram{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:14px;
+    }
+    .flow-box{
+        background:var(--primary-blue);
+        color:var(--white);
+        padding:14px 18px;
+        border-radius:10px;
+        font-weight:600;
+        font-size:14px;
+        min-width:110px;
+    }
+    .arrow{
+        font-size:24px;
+        color:var(--secondary-blue);
+        font-weight:bold;
+    }
 
+    /* Atom diagram */
+    .atom-diagram{
+        position:relative;
+        width:220px;
+        height:220px;
+        margin:20px auto;
+        border-radius:50%;
+        border:2px dashed var(--accent-blue);
+    }
+    .atom-diagram .nucleus{
+        position:absolute;
+        top:50%;left:50%;
+        transform:translate(-50%,-50%);
+        width:50px;height:50px;
+        background:var(--primary-blue);
+        color:#fff;
+        border-radius:50%;
+        display:flex;align-items:center;justify-content:center;
+        font-size:11px;font-weight:700;
+    }
+    .electron{
+        position:absolute;
+        width:16px;height:16px;
+        background:var(--warning-orange);
+        border-radius:50%;
+        top:5px;left:50%;
+        transform:translateX(-50%);
+    }
+    .electron.e2{top:50%;left:5px;transform:translateY(-50%);}
+    .electron.e3{top:50%;right:5px;transform:translateY(-50%);}
+    .electron.e4{bottom:5px;left:50%;transform:translateX(-50%);}
+
+    /* ===================== CARDS (Applications / Facts) ===================== */
+    .card-grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+        gap:16px;
+        margin:18px 0;
+    }
+    .card{
+        background:var(--light-blue);
+        border-radius:12px;
+        padding:18px;
+        border:1px solid var(--border-gray);
+        transition:transform 0.2s ease;
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+    .card h4{color:var(--primary-blue);margin-bottom:8px;font-size:16px;}
+    .card p{font-size:14px;margin-bottom:0;}
+
+    /* ===================== ADV / DISADV ===================== */
+    .adv-disadv{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:20px;
+    }
+    @media(max-width:700px){.adv-disadv{grid-template-columns:1fr;}}
+    .adv-box,.disadv-box{
+        border-radius:10px;
+        padding:18px;
+    }
+    .adv-box{background:#e8f5e9;border-left:5px solid var(--success-green);}
+    .disadv-box{background:#fdecea;border-left:5px solid var(--danger-red);}
+
+    /* ===================== INTERVIEW Q&A ===================== */
+    .qa-item{
+        background:var(--light-gray);
+        border-radius:10px;
+        padding:14px 18px;
+        margin-bottom:12px;
+        border:1px solid var(--border-gray);
+    }
+    .qa-item .q{font-weight:700;color:var(--primary-blue);margin-bottom:6px;}
+
+    /* ===================== MCQ ===================== */
+    .mcq-item{
+        background:var(--light-gray);
+        border-radius:10px;
+        padding:16px 18px;
+        margin-bottom:14px;
+        border:1px solid var(--border-gray);
+    }
+    .mcq-item p.question{font-weight:600;margin-bottom:8px;}
+    .mcq-options{list-style:none;margin-left:0;}
+    .mcq-options li{
+        background:var(--white);
+        padding:8px 12px;
+        border-radius:6px;
+        margin-bottom:6px;
+        border:1px solid var(--border-gray);
+        font-size:14.5px;
+    }
+    .answer-reveal{
+        margin-top:8px;
+        font-size:14px;
+        font-weight:700;
+        color:var(--success-green);
+    }
+
+    /* ===================== KEY POINTS / SUMMARY ===================== */
+    .keypoints-list li{
+        background:var(--light-blue);
+        padding:10px 14px;
+        border-radius:8px;
+        margin-bottom:8px;
+        list-style:none;
+        border-left:4px solid var(--primary-blue);
+    }
+    .keypoints-list{margin-left:0;}
+
+    /* ===================== NAVIGATION ===================== */
+    .nav-buttons{
+        display:flex;
+        justify-content:space-between;
+        gap:14px;
+        flex-wrap:wrap;
+        margin-top:10px;
+    }
+    .nav-btn{
+        flex:1;
+        min-width:150px;
+        text-align:center;
+        padding:14px 20px;
+        border-radius:10px;
+        font-weight:700;
+        color:var(--white);
+        background:var(--primary-blue);
+        transition:background 0.2s ease;
+    }
+    .nav-btn:hover{background:var(--secondary-blue);}
+    .nav-btn.disabled{
+        background:#b0bec5;
+        pointer-events:none;
+    }
+
+    /* ===================== FOOTER ===================== */
+    footer{
+        background:var(--primary-blue);
+        color:var(--white);
+        text-align:center;
+        padding:26px 5%;
+        margin-top:40px;
+        font-size:14px;
+    }
+    footer a{color:var(--light-blue);}
+    footer .footer-links{
+        margin-bottom:10px;
+    }
+    footer .footer-links a{margin:0 10px;}
+
+    /* ===================== RESPONSIVE ===================== */
+    @media(max-width:600px){
+        .header-top{flex-direction:column;align-items:flex-start;}
+        .course-info{text-align:left;}
+        section{padding:20px 16px;}
+        h2.section-title{font-size:20px;}
+    }
 </style>
-
 </head>
-
 <body>
 
-<header>
-
-<h1>EngineerHub</h1>
-<p>Electrical Fundamentals</p>
-
+<!-- ===================== HEADER ===================== -->
+<header class="main-header">
+    <div class="header-top">
+        <div class="logo-title">
+            <div class="logo-icon">EH</div>
+            <div class="logo-text">
+                <h1>EngineerHub</h1>
+                <span>Learn Electrical &amp; Electronics Engineering the Right Way</span>
+            </div>
+        </div>
+        <div class="course-info">
+            <strong>Course: Electrical Fundamentals</strong>
+            Lesson 1 &nbsp;|&nbsp; Introduction to Electricity
+        </div>
+    </div>
+    <div class="breadcrumb">Home &gt; Electrical Fundamentals &gt; Lesson 1: Introduction to Electricity</div>
 </header>
+
+<!-- ===================== PROGRESS BAR ===================== -->
+<div class="progress-wrapper">
+    <div class="progress-label">
+        <span>Course Progress</span>
+        <span>Lesson 1 of 9 (Section 1)</span>
+    </div>
+    <div class="progress-bar-bg">
+        <div class="progress-bar-fill"></div>
+    </div>
+</div>
 
 <div class="container">
 
-<div class="lesson-box">
+    <!-- ===================== LEARNING OBJECTIVES ===================== -->
+    <section>
+        <h2 class="section-title">Learning Objectives</h2>
+        <p>By the end of this lesson, you will be able to:</p>
+        <ul class="objectives-list">
+            <li>Explain what electricity is, both in scientific and simple terms.</li>
+            <li>Understand why electricity is fundamental to modern life and engineering.</li>
+            <li>Describe the basic characteristics and properties of electricity.</li>
+            <li>List interesting facts and real-world applications of electricity.</li>
+            <li>Understand the roadmap for learning Electrical Fundamentals in this course.</li>
+            <li>Answer common interview questions related to the basics of electricity.</li>
+        </ul>
+    </section>
 
-<div class="progress">
-<div class="progress-bar">
-Lesson 1 / 7
+    <!-- ===================== INTRODUCTION ===================== -->
+    <section>
+        <h2 class="section-title">Welcome to Electrical Fundamentals</h2>
+        <p>Welcome to the very first lesson of the <strong>Electrical Fundamentals</strong> course on EngineerHub! Whether you are a first-year Electrical and Electronics Engineering (EEE) student, a hobbyist who loves building circuits, or someone preparing for competitive exams and interviews, this course has been designed to take you from absolute zero to a strong, confident understanding of electricity.</p>
+        <p>Electricity is the invisible force that powers almost everything around us — from the light bulb above your head to the smartphone in your pocket, from massive industrial machines to the tiny microchips inside a calculator. Yet, despite being so common, most people never truly understand what electricity actually is. In this lesson, we will build that understanding from the ground up, using simple language, real-life analogies, and clear diagrams.</p>
+        <p>This lesson is the foundation of your entire engineering journey. Just like a building needs a strong foundation to stand tall, your knowledge of electrical engineering needs a strong understanding of "what electricity is" before you can move on to voltage, current, resistance, circuits, and beyond. So, let's begin this exciting journey together!</p>
+    </section>
+
+    <!-- ===================== WHAT IS ELECTRICITY ===================== -->
+    <section>
+        <h2 class="section-title">What is Electricity?</h2>
+
+        <h3>Scientific Definition</h3>
+        <p>In scientific terms, <strong>electricity</strong> is defined as the flow of electric charge, usually in the form of moving electrons, through a conductor. It is a form of energy resulting from the existence of charged particles (such as electrons or protons), either statically as an accumulation of charge, or dynamically as a current.</p>
+
+        <div class="box info-box">
+            <div class="box-title">📘 Information Box: Formal Definition</div>
+            Electricity is the set of physical phenomena associated with the presence and motion of electric charge. It gives rise to electric fields, magnetic fields, electric current, and electromagnetic radiation.
+        </div>
+
+        <h3>Simple Definition</h3>
+        <p>In simple words, electricity is <strong>the movement of tiny particles called electrons</strong> through a wire or material. Imagine millions of tiny balls (electrons) rolling through a pipe (the wire) — this rolling movement is what we call electric current, and the overall phenomenon is called electricity.</p>
+
+        <h3>Real-life Explanation</h3>
+        <p>Think of electricity like water flowing through a pipe. Water molecules moving through a pipe due to pressure is similar to electrons moving through a wire due to voltage (electrical pressure). Just as water flow can turn a water wheel to do work, the flow of electrons can light up a bulb, run a motor, or power your laptop.</p>
+
+        <div class="diagram-box">
+            <div class="diagram-title">Diagram: Atomic Structure — Source of Electricity</div>
+            <div class="atom-diagram">
+                <div class="nucleus">Nucleus<br>(P+ N)</div>
+                <div class="electron"></div>
+                <div class="electron e2"></div>
+                <div class="electron e3"></div>
+                <div class="electron e4"></div>
+            </div>
+            <p style="font-size:13px;color:#607d8b;">Electrons (orange dots) revolve around the nucleus. When electrons are pushed to move from one atom to another, electricity is generated.</p>
+        </div>
+
+        <div class="diagram-box">
+            <div class="diagram-title">Diagram: Basic Electric Circuit Flow</div>
+            <div class="flow-diagram">
+                <div class="flow-box">Battery<br>(Source)</div>
+                <div class="arrow">→</div>
+                <div class="flow-box">Wire<br>(Conductor)</div>
+                <div class="arrow">→</div>
+                <div class="flow-box">Bulb<br>(Load)</div>
+                <div class="arrow">→</div>
+                <div class="flow-box">Back to Battery</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== WHY LEARN ELECTRICITY ===================== -->
+    <section>
+        <h2 class="section-title">Why Learn Electricity?</h2>
+        <p>You might wonder — why should I spend time deeply understanding something as "basic" as electricity? The answer is simple: <strong>every single concept in Electrical and Electronics Engineering is built on top of this foundation.</strong> Without a clear understanding of what electricity is, concepts like voltage, current, resistance, power, AC/DC, transformers, and even complex power systems or electronics will feel confusing.</p>
+
+        <div class="box note-box">
+            <div class="box-title">📝 Important Note</div>
+            Engineers who skip mastering the basics often struggle later with advanced subjects like Power Systems, Control Systems, and Electrical Machines. Take your time here — it pays off massively later!
+        </div>
+
+        <h3>Importance of Electricity in Modern Life</h3>
+        <p>Electricity is often called the backbone of modern civilization. Without it, hospitals cannot run life-saving equipment, factories cannot manufacture products, communication networks fail, and homes go dark. It is one of the few inventions that has touched literally every industry — agriculture, healthcare, defence, transportation, education, and entertainment.</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h4>🏠 Homes</h4>
+                <p>Lighting, fans, refrigerators, TVs, and countless appliances depend on electricity every second of the day.</p>
+            </div>
+            <div class="card">
+                <h4>🏭 Industries</h4>
+                <p>Heavy machinery, conveyor belts, robotic arms, and automated production lines run entirely on electrical power.</p>
+            </div>
+            <div class="card">
+                <h4>🏥 Healthcare</h4>
+                <p>Life-support systems, MRI machines, and diagnostic equipment rely on stable and reliable electricity supply.</p>
+            </div>
+            <div class="card">
+                <h4>📡 Communication</h4>
+                <p>Mobile networks, internet servers, and satellites all function using electrical and electronic systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CHARACTERISTICS ===================== -->
+    <section>
+        <h2 class="section-title">Characteristics of Electricity</h2>
+        <p>Electricity has several defining characteristics that separate it from other forms of energy. Understanding these characteristics helps engineers predict how electrical systems will behave under different conditions.</p>
+
+        <h3>Basic Properties of Electricity</h3>
+        <ul>
+            <li><strong>Invisible:</strong> Electricity itself cannot be seen directly; only its effects (light, heat, motion) can be observed.</li>
+            <li><strong>Flows through conductors:</strong> It travels easily through materials like copper and aluminium, but not through insulators like rubber or plastic.</li>
+            <li><strong>Can be converted:</strong> Electrical energy can be converted into heat, light, mechanical motion, or sound.</li>
+            <li><strong>Can be stored:</strong> Electricity (as charge) can be stored in batteries and capacitors for later use.</li>
+            <li><strong>Travels at very high speed:</strong> Electric signals travel through conductors at speeds close to the speed of light.</li>
+            <li><strong>Follows fixed laws:</strong> Electricity obeys well-established physical laws such as Ohm's Law and Kirchhoff's Laws.</li>
+        </ul>
+
+        <table>
+            <tr><th>Property</th><th>Description</th></tr>
+            <tr><td>Charge</td><td>Fundamental property of matter that causes electrical phenomena (measured in Coulombs).</td></tr>
+            <tr><td>Current</td><td>Rate of flow of electric charge, measured in Amperes (A).</td></tr>
+            <tr><td>Voltage</td><td>Electrical "pressure" that pushes charge to flow, measured in Volts (V).</td></tr>
+            <tr><td>Resistance</td><td>Opposition to the flow of current, measured in Ohms (Ω).</td></tr>
+            <tr><td>Power</td><td>Rate at which electrical energy is used or converted, measured in Watts (W).</td></tr>
+        </table>
+    </section>
+
+    <!-- ===================== INTERESTING FACTS ===================== -->
+    <section>
+        <h2 class="section-title">Interesting Facts about Electricity</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h4>⚡ Lightning Power</h4>
+                <p>A single lightning bolt can contain up to 1 billion volts of electricity, though it lasts only a fraction of a second.</p>
+            </div>
+            <div class="card">
+                <h4>🐟 Electric Eels</h4>
+                <p>Electric eels can generate electric shocks of up to 600 volts to stun prey and defend themselves.</p>
+            </div>
+            <div class="card">
+                <h4>💡 First Bulb</h4>
+                <p>Thomas Edison's practical incandescent bulb design in 1879 could last over 1,200 hours — a huge achievement then.</p>
+            </div>
+            <div class="card">
+                <h4>🌍 Global Access</h4>
+                <p>Even today, over 700 million people worldwide still lack access to reliable electricity, showing how much work remains.</p>
+            </div>
+        </div>
+
+        <div class="box tip-box">
+            <div class="box-title">💡 Tip</div>
+            Try relating every new electrical concept you learn to something you already see in daily life — this dramatically improves retention and understanding.
+        </div>
+    </section>
+
+    <!-- ===================== APPLICATIONS OVERVIEW ===================== -->
+    <section>
+        <h2 class="section-title">Applications Overview</h2>
+        <p>Electricity finds its application in virtually every sector of modern society. Below is a broad overview; we will explore each of these areas in much greater depth in upcoming lessons.</p>
+
+        <table>
+            <tr><th>Sector</th><th>Application Example</th></tr>
+            <tr><td>Residential</td><td>Lighting, heating, cooling, home appliances</td></tr>
+            <tr><td>Industrial</td><td>Motors, pumps, conveyor systems, robotics</td></tr>
+            <tr><td>Medical</td><td>X-ray machines, ECG monitors, ventilators</td></tr>
+            <tr><td>Transportation</td><td>Electric trains, electric vehicles, traffic signals</td></tr>
+            <tr><td>Communication</td><td>Mobile towers, routers, satellites</td></tr>
+            <tr><td>Agriculture</td><td>Irrigation pumps, automated greenhouses</td></tr>
+        </table>
+
+        <div class="box warning-box">
+            <div class="box-title">⚠ Warning</div>
+            Never touch electrical equipment or wires with wet hands, and always ensure the power supply is switched off before inspecting any circuit. Electrical safety will be covered in detail in Lesson 1.7.
+        </div>
+    </section>
+
+    <!-- ===================== LEARNING ROADMAP ===================== -->
+    <section>
+        <h2 class="section-title">Learning Roadmap for This Course</h2>
+        <p>Here is what you can expect as you progress through the "Electrical Fundamentals" course:</p>
+        <ol>
+            <li>Lesson 1.1 – History of Electricity</li>
+            <li>Lesson 1.2 – Importance of Electricity</li>
+            <li>Lesson 1.3 – Types of Electricity (Static, Current, AC, DC)</li>
+            <li>Lesson 1.4 – Conductors, Insulators and Semiconductors</li>
+            <li>Lesson 1.5 – Sources of Electricity</li>
+            <li>Lesson 1.6 – Applications of Electricity</li>
+            <li>Lesson 1.7 – Electrical Safety</li>
+            <li>Lesson 1.8 – Revision and Quiz</li>
+        </ol>
+        <p>Each lesson builds upon the previous one, so make sure to complete them in order for the best learning experience.</p>
+    </section>
+
+    <!-- ===================== ADVANTAGES / DISADVANTAGES ===================== -->
+    <section>
+        <h2 class="section-title">Advantages and Limitations of Electrical Energy</h2>
+        <div class="adv-disadv">
+            <div class="adv-box">
+                <h3 style="color:var(--success-green);margin-top:0;">Advantages</h3>
+                <ul>
+                    <li>Easily transmitted over long distances</li>
+                    <li>Can be converted into other energy forms efficiently</li>
+                    <li>Clean at the point of use (no direct emissions)</li>
+                    <li>Enables automation and modern technology</li>
+                </ul>
+            </div>
+            <div class="disadv-box">
+                <h3 style="color:var(--danger-red);margin-top:0;">Limitations</h3>
+                <ul>
+                    <li>Cannot be stored in large amounts easily</li>
+                    <li>Requires proper insulation to prevent hazards</li>
+                    <li>Generation may depend on non-renewable resources</li>
+                    <li>Power outages can disrupt daily life significantly</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== COMMON MISTAKES ===================== -->
+    <section>
+        <h2 class="section-title">Common Mistakes Beginners Make</h2>
+        <ul>
+            <li>Confusing "electricity" with just "current" — electricity is a broader phenomenon that includes charge, current, voltage, and fields.</li>
+            <li>Thinking electricity "travels" as fast as electrons physically move — actually, the electrical signal (energy) travels near light speed, while individual electrons move quite slowly (drift velocity).</li>
+            <li>Assuming all materials conduct electricity equally — conductivity varies greatly between materials.</li>
+            <li>Ignoring basic safety precautions while experimenting with circuits at home.</li>
+        </ul>
+    </section>
+
+    <!-- ===================== INTERVIEW QUESTIONS ===================== -->
+    <section>
+        <h2 class="section-title">Interview Questions with Answers</h2>
+
+        <div class="qa-item">
+            <div class="q">Q1. What is electricity?</div>
+            <p>Electricity is the flow of electric charge, typically electrons, through a conductor, resulting in energy that can be used to perform work such as lighting, heating, or running machines.</p>
+        </div>
+
+        <div class="qa-item">
+            <div class="q">Q2. What causes the flow of electrons in a conductor?</div>
+            <p>An external energy source (like a battery) creates a potential difference (voltage), which pushes free electrons to move through the conductor, creating current.</p>
+        </div>
+
+        <div class="qa-item">
+            <div class="q">Q3. Why is copper commonly used as a conductor?</div>
+            <p>Copper has a large number of free electrons and low resistivity, making it an excellent and cost-effective conductor of electricity.</p>
+        </div>
+
+        <div class="qa-item">
+            <div class="q">Q4. What is the difference between electricity and electronics?</div>
+            <p>Electricity deals with the generation, transmission, and use of electrical power (larger scale energy), whereas electronics deals with controlling electron flow for signal processing using components like diodes and transistors (smaller scale, information-based).</p>
+        </div>
+
+        <div class="qa-item">
+            <div class="q">Q5. Is electricity a renewable or non-renewable resource?</div>
+            <p>Electricity itself is a secondary form of energy — it can be generated from both renewable sources (solar, wind, hydro) and non-renewable sources (coal, gas, oil).</p>
+        </div>
+    </section>
+
+    <!-- ===================== KEY POINTS ===================== -->
+    <section>
+        <h2 class="section-title">Key Points to Remember</h2>
+        <ul class="keypoints-list">
+            <li>Electricity is the flow of electric charge, usually electrons, through a conductor.</li>
+            <li>It can be generated from many sources and converted into light, heat, or motion.</li>
+            <li>Electricity is foundational to nearly every modern industry and technology.</li>
+            <li>Key properties include charge, current, voltage, resistance, and power.</li>
+            <li>Safety must always be a priority when working with electrical systems.</li>
+        </ul>
+    </section>
+
+    <!-- ===================== SUMMARY ===================== -->
+    <section>
+        <h2 class="section-title">Summary</h2>
+        <p>In this lesson, we introduced the concept of electricity from both a scientific and everyday perspective. We learned that electricity is the movement of electric charge (electrons) through a conductor, and explored why understanding this basic concept is critical for anyone studying Electrical and Electronics Engineering. We also looked at the key characteristics of electricity, some fascinating facts, a broad overview of its applications, and the roadmap for the rest of this course. With this strong foundation, you are now ready to explore the fascinating history of electricity in the next lesson.</p>
+    </section>
+
+    <!-- ===================== MCQs ===================== -->
+    <section>
+        <h2 class="section-title">10 Multiple Choice Questions</h2>
+
+        <div class="mcq-item">
+            <p class="question">1. Electricity is fundamentally the flow of:</p>
+            <ul class="mcq-options">
+                <li>A) Protons</li>
+                <li>B) Neutrons</li>
+                <li>C) Electrons</li>
+                <li>D) Photons</li>
+            </ul>
+            <div class="answer-reveal">Answer: C) Electrons</div>
+        </div>
+
+        <div class="mcq-item">
+            <p class="question">2. Which unit is used to measure electric current?</p>
+            <ul class="mcq-options">
+                <li>A) Volt</li>
+                <li>B) Ampere</li>
+                <li>C) Ohm</li>
+                <li>D) Watt</li>
+            </ul>
+            <div class="answer-reveal">Answer: B) Ampere</div>
+        </div>
+
+        <div class="mcq-item">
+            <p class="question">3. Which of the following is a good conductor of electricity?</p>
+            <ul class="mcq-options">
+                <li>A) Rubber</li>
+                <li>B) Wood</li>
+                <li>C) Copper</li>
+                <li>D) Plastic</li>
+            </ul>
+            <div class="answer-reveal">Answer: C) Copper</div>
+        </div>
+
+        <div class="mcq-item">
+            <p class="question">4. Voltage is also known as:</p>
+            <ul class="mcq-options">
+                <li>A) Electric current</li>
+                <li>B) Electric pressure</li>
+                <li>C) Electric resistance</li>
+                <li>D) Electric power</li>
+            </ul>
+            <div class="answer-reveal">Answer: B) Electric pressure</div>
+        </div>
+
+        <div class="mcq-item">
+            <p class="question">5. Which of these devices converts electricity into light?</p>
+            <ul class="mcq-options">
+                <li>A) Motor</li>
+                <li>B) Bulb</li>
+                <li>C) Heater</li>
+                <li>D) Speaker</li>
+            </ul>
+            <div class="answer-reveal">Answer: B) Bulb</div>
+        </div>
+
+        <div class="mcq-item">
+            <p class="question">6. What is the SI unit of resistance?</p>
+            <ul class="mcq-options">
+                <li>A) Ohm</li>
+                <li>B) Volt</li>
+                <li>C) Ampere</li>
+                <li>D) Joule</li>
+            </ul>
+            <div class="answer-reveal">Answer: A) Ohm</div>
+        </div>
+
+        <div class="mcq-item">
+            <p class="question">7. Which of the following is NOT a source of electricity?</p>
+            <ul class="mcq-options">
+                <li>A) Solar Panel</li>
+                <li>B) Battery</li>
+                <li>C) Wind Turbine</li>
+                <li>D) Wooden Chair</li>
+            </ul>
+            <div class="answer-reveal">Answer: D) Wooden Chair</div>
+        </div>
+
+        <div class="mcq-item">
+            <p class="question">8. Electric current is measured using which instrument?</p>
+            <ul class="mcq-options">
+                <li>A) Voltmeter</li>
+                <li>B) Ammeter</li>
+                <li>C) Ohmmeter</li>
+                <li>D) Wattmeter</li>
+            </ul>
+            <div class="answer-reveal">Answer: B) Ammeter</div>
+        </div>
+
+        <div class="mcq-item">
+            <p class="question">9. Which of these best describes an insulator?</p>
+            <ul class="mcq-options">
+                <li>A) Allows electricity to flow easily</li>
+                <li>B) Blocks the flow of electricity</li>
+                <li>C) Generates electricity</li>
+                <li>D) Stores electricity permanently</li>
+            </ul>
+            <div class="answer-reveal">Answer: B) Blocks the flow of electricity</div>
+        </div>
+
+        <div class="mcq-item">
+            <p class="question">10. Electrical power is measured in:</p>
+            <ul class="mcq-options">
+                <li>A) Volts</li>
+                <li>B) Amperes</li>
+                <li>C) Ohms</li>
+                <li>D) Watts</li>
+            </ul>
+            <div class="answer-reveal">Answer: D) Watts</div>
+        </div>
+    </section>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <section>
+        <div class="nav-buttons">
+            <a href="electrical.html" class="nav-btn">← Previous: Course Home</a>
+            <a href="lesson1_1.html" class="nav-btn">Next: History of Electricity →</a>
+        </div>
+    </section>
+
 </div>
-</div>
 
-<h2>Lesson 1 - Introduction to Electricity</h2>
-
-<p>
-Electricity is the flow of electric charge through a conductor.
-It is one of the most important forms of energy used in homes,
-industries, computers, communication systems and electronic devices.
-</p>
-
-<p>
-Everything around us such as lights, fans, televisions,
-mobile phones and laptops works using electrical energy.
-</p>
-
-<h3>Topics Covered</h3>
-
-<ul>
-<li>What is Electricity?</li>
-<li>Types of Electricity</li>
-<li>Conductors and Insulators</li>
-<li>Applications of Electricity</li>
-</ul>
-
-<div class="btn-group">
-
-<a href="electrical.html" class="btn">
-⬅ Previous
-</a>
-
-<a href="lesson2.html" class="btn">
-Next ➜
-</a>
-
-</div>
-
-</div>
-
-</div>
+<!-- ===================== FOOTER ===================== -->
+<footer>
+    <div class="footer-links">
+        <a href="electrical.html">Course Home</a>
+        <a href="lesson1_1.html">Next Lesson</a>
+        <a href="#">Contact</a>
+        <a href="#">About EngineerHub</a>
+    </div>
+    <p>&copy; 2026 EngineerHub. All rights reserved. | Built for Electrical &amp; Electronics Engineering Students.</p>
+</footer>
 
 </body>
 </html>
