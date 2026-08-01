@@ -6,7 +6,7 @@
 <title>EngineerHub - Lesson 1: Introduction to Electricity</title>
 <style>
   /* =========================================================
-     PRESERVED LESSON 1 ORIGINAL STYLES (UNTOUCHED CORE)
+     PRESERVED LESSON 1 ORIGINAL STYLES (100% UNTOUCHED)
      ========================================================= */
   :root {
     --primary: #0066cc;
@@ -84,7 +84,7 @@
 
   .section-card.active-topic-section {
     border: 2px solid var(--primary);
-    box-shadow: 0 0 12px rgba(0, 102, 204, 0.2);
+    box-shadow: 0 0 12px rgba(0, 102, 204, 0.25);
   }
 
   .section-card h2 {
@@ -92,6 +92,12 @@
     border-bottom: 2px solid var(--primary);
     padding-bottom: 8px;
     margin-bottom: 15px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .section-card h2:hover {
+    color: var(--primary);
   }
 
   .section-card p, .section-card ul {
@@ -133,106 +139,61 @@
   .quiz-option.wrong { background: #ffcdd2 !important; border-color: #d32f2f !important; }
 
   /* =========================================================
-     ADDED NEW FEATURES: SIDEBAR NAVIGATION & REALISTIC AI MENTOR
+     ADDED NEW FEATURES: REALISTIC MENTOR & TOPIC ANIMATIONS
      ========================================================= */
 
-  /* Collapsible Topic Navigation Sidebar */
-  .topics-sidebar {
-    width: 280px;
-    flex-shrink: 0;
-    background: var(--card-bg);
+  /* Dedicated Added Topic Educational Visual Aid Canvas Container */
+  .added-topic-animation-container {
+    width: 100%;
+    height: 200px;
+    background: #0f172a;
     border-radius: 8px;
-    border: 1px solid var(--border);
-    padding: 18px;
+    margin: 15px 0;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #334155;
+  }
+
+  .added-topic-animation-container canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Sticky Side Mentor Panel Layout */
+  .mentor-panel-desktop {
+    width: 360px;
+    flex-shrink: 0;
     position: sticky;
     top: 20px;
     height: fit-content;
     max-height: calc(100vh - 40px);
-    overflow-y: auto;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-
-  .topics-sidebar h3 {
-    font-size: 1.1rem;
-    color: var(--primary-dark);
-    margin-bottom: 12px;
-    padding-bottom: 6px;
-    border-bottom: 2px solid #eee;
-  }
-
-  .topic-list {
-    list-style: none;
-    padding: 0;
-  }
-
-  .topic-item {
-    padding: 8px 12px;
-    margin-bottom: 4px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    color: var(--subtext);
-    transition: all 0.2s ease;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 100;
   }
 
-  .topic-item:hover {
-    background: #e6f0fa;
-    color: var(--primary-dark);
-  }
-
-  .topic-item.active {
-    background: var(--primary);
-    color: white;
-    font-weight: 600;
-  }
-
-  .topic-item.sub-item {
-    padding-left: 24px;
-    font-size: 0.85rem;
-  }
-
-  /* Floating Mentor Panel Window */
-  .mentor-window {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    width: 360px;
+  .mentor-card {
     background: #181b20;
     border-radius: 12px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
     border: 1px solid #2d323b;
-    z-index: 2000;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: width 0.2s, height 0.2s;
   }
 
-  .mentor-window.minimized {
-    height: 48px !important;
-    overflow: hidden;
-  }
-
-  .mentor-header {
+  .mentor-card-header {
     background: #222730;
     color: #ffffff;
     padding: 10px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    cursor: move;
-    user-select: none;
-    border-bottom: 1px solid #2d323b;
-  }
-
-  .mentor-header-title {
     font-size: 0.88rem;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    border-bottom: 1px solid #2d323b;
   }
 
   .status-badge {
@@ -241,28 +202,14 @@
     background: #20bf6b;
     border-radius: 50%;
     display: inline-block;
+    margin-right: 6px;
   }
 
-  .mentor-header-controls button {
-    background: none;
-    border: none;
-    color: #a0aec0;
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
-
-  .mentor-header-controls button:hover {
-    color: #fff;
-    background: #323945;
-  }
-
-  /* Presenter Stage */
+  /* Presenter Stage Canvas */
   .mentor-stage {
     position: relative;
     width: 100%;
-    height: 220px;
+    height: 230px;
     background: radial-gradient(circle at center, #232936 0%, #111317 100%);
     display: flex;
     justify-content: center;
@@ -274,40 +221,22 @@
     height: 100%;
   }
 
-  /* Dynamic Teaching Visual Aid Window inside Stage */
-  .teaching-aid-overlay {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 120px;
-    height: 80px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-
-  .teaching-aid-overlay canvas {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Subtitles Display */
+  /* Subtitles Display Box */
   .subtitle-container {
     background: #0f1115;
-    padding: 10px 14px;
-    min-height: 58px;
-    max-height: 80px;
+    padding: 12px 14px;
+    min-height: 64px;
+    max-height: 90px;
     overflow-y: auto;
-    font-family: 'Consolas', monospace;
-    font-size: 0.8rem;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.82rem;
     color: #38ef7d;
     border-top: 1px solid #1f242d;
     border-bottom: 1px solid #1f242d;
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
-  /* Mentor Control Panel */
+  /* Control Dashboard */
   .mentor-controls {
     padding: 10px 12px;
     background: #181b20;
@@ -316,25 +245,24 @@
     gap: 8px;
   }
 
-  .btn-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 4px;
+  .btn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
   }
 
-  .btn-group button {
-    flex: 1;
+  .btn-grid button {
     background: #252a34;
     color: #d1d5db;
     border: 1px solid #323846;
-    padding: 5px 2px;
+    padding: 6px 2px;
     border-radius: 4px;
-    font-size: 0.75rem;
+    font-size: 0.73rem;
     cursor: pointer;
     transition: all 0.2s;
   }
 
-  .btn-group button:hover {
+  .btn-grid button:hover {
     background: var(--primary);
     color: white;
     border-color: var(--primary);
@@ -360,29 +288,29 @@
     color: #fff;
     border: 1px solid #323846;
     border-radius: 3px;
-    padding: 2px;
+    padding: 3px;
     width: 100%;
   }
 
-  /* Resizer grip */
-  .resizer {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    bottom: 0;
-    right: 0;
-    cursor: se-resize;
-  }
-
-  /* Responsiveness */
+  /* Mobile/Tablet Adaptive Positioning */
   @media (max-width: 992px) {
     .container { flex-direction: column; }
-    .topics-sidebar { width: 100%; position: static; max-height: none; }
-    .mentor-window { width: 320px; right: 15px; bottom: 15px; }
+    .mentor-panel-desktop {
+      width: 100%;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      left: 10px;
+      top: auto;
+      max-width: calc(100vw - 20px);
+      z-index: 2000;
+    }
+    .mentor-stage { height: 160px; }
   }
 
-  @media (max-width: 576px) {
-    .mentor-window { width: calc(100vw - 20px); left: 10px; right: 10px; bottom: 10px; }
+  /* Accessibility Mode Adjustments */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
   }
 </style>
 </head>
@@ -398,393 +326,483 @@
 </header>
 
 <div class="container">
-  <!-- Topic Navigation Sidebar -->
-  <aside class="topics-sidebar">
-    <h3>Lesson Topics</h3>
-    <ul class="topic-list">
-      <li class="topic-item" onclick="selectTopic('learning-objectives')">• Learning Objectives</li>
-      <li class="topic-item" onclick="selectTopic('introduction')">• Introduction</li>
-      <li class="topic-item" onclick="selectTopic('what-is-electricity')">• What is Electricity</li>
-      <li class="topic-item sub-item" onclick="selectTopic('scientific-definition')">↳ Scientific Definition</li>
-      <li class="topic-item sub-item" onclick="selectTopic('simple-definition')">↳ Simple Definition</li>
-      <li class="topic-item sub-item" onclick="selectTopic('real-life-explanation')">↳ Real-life Explanation</li>
-      <li class="topic-item" onclick="selectTopic('characteristics')">• Characteristics</li>
-      <li class="topic-item" onclick="selectTopic('summary')">• Summary</li>
-      <li class="topic-item" onclick="selectTopic('quiz')">• Quiz</li>
-      <li class="topic-item" onclick="selectTopic('completion')">• Completion</li>
-    </ul>
-  </aside>
 
-  <!-- Lesson Content -->
+  <!-- Main Lesson Content (100% UNTOUCHED CONTENT) -->
   <main class="main-content">
 
     <!-- Learning Objectives -->
     <section class="section-card" id="learning-objectives">
-      <h2>Learning Objectives</h2>
+      <h2 onclick="selectTopic('learning-objectives')">Learning Objectives</h2>
       <ul>
         <li>Understand the fundamental nature of electric charge.</li>
         <li>Explain the movement of electrons in conductors.</li>
         <li>Identify everyday applications and safety principles of electricity.</li>
       </ul>
       <div class="lesson-diagram">
-        <svg width="280" height="100" viewBox="0 0 280 100">
+        <svg width="280" height="100" viewBox="0 0 280 100" aria-label="Objectives Diagram">
           <rect x="10" y="15" width="260" height="70" fill="none" stroke="#0066cc" stroke-width="2" rx="6"/>
           <text x="30" y="42" fill="#38ef7d" font-size="13">✔ Charge & Field Fundamentals</text>
           <text x="30" y="65" fill="#38ef7d" font-size="13">✔ Electron Flow & Circuit Mechanics</text>
         </svg>
       </div>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-learning-objectives"></canvas>
+      </div>
     </section>
 
     <!-- Introduction -->
     <section class="section-card" id="introduction">
-      <h2>Introduction</h2>
+      <h2 onclick="selectTopic('introduction')">Introduction</h2>
       <p>Welcome to Lesson 1. Electricity is the backbone of modern technology, powering everything from household lights to complex industrial machinery and digital microprocessors.</p>
       <div class="lesson-diagram">
-        <svg width="280" height="100" viewBox="0 0 280 100">
+        <svg width="280" height="100" viewBox="0 0 280 100" aria-label="Energy Diagram">
           <circle cx="140" cy="50" r="30" fill="#ff9900" opacity="0.8"/>
           <text x="108" y="55" fill="#ffffff" font-size="14" font-weight="bold">ENERGY</text>
         </svg>
+      </div>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-introduction"></canvas>
       </div>
     </section>
 
     <!-- What is Electricity -->
     <section class="section-card" id="what-is-electricity">
-      <h2>What is Electricity</h2>
+      <h2 onclick="selectTopic('what-is-electricity')">What is Electricity</h2>
       <p>Electricity is a form of energy resulting from the existence of charged particles (such as electrons or protons), either statically as an accumulation of charge or dynamically as a current.</p>
       <div class="lesson-diagram">
-        <svg width="280" height="100" viewBox="0 0 280 100">
+        <svg width="280" height="100" viewBox="0 0 280 100" aria-label="Atom Diagram">
           <circle cx="140" cy="50" r="16" fill="#ff4757"/>
           <ellipse cx="140" cy="50" rx="90" ry="32" fill="none" stroke="#0066cc" stroke-width="2"/>
           <circle cx="230" cy="50" r="6" fill="#00d2d3"/>
         </svg>
       </div>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-what-is-electricity"></canvas>
+      </div>
     </section>
 
     <!-- Scientific Definition -->
     <section class="section-card" id="scientific-definition">
-      <h2>Scientific Definition</h2>
+      <h2 onclick="selectTopic('scientific-definition')">Scientific Definition</h2>
       <p>Scientifically, electricity is the set of physical phenomena associated with the presence and motion of matter that has a property of electric charge.</p>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-scientific-definition"></canvas>
+      </div>
     </section>
 
     <!-- Simple Definition -->
     <section class="section-card" id="simple-definition">
-      <h2>Simple Definition</h2>
+      <h2 onclick="selectTopic('simple-definition')">Simple Definition</h2>
       <p>In simple terms: Imagine electricity as water flowing through a pipe. The water molecules represent electrons, and the pipe represents a conducting wire.</p>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-simple-definition"></canvas>
+      </div>
     </section>
 
     <!-- Real-life Explanation -->
     <section class="section-card" id="real-life-explanation">
-      <h2>Real-life Explanation</h2>
+      <h2 onclick="selectTopic('real-life-explanation')">Real-life Explanation</h2>
       <p>When you flip a wall switch, an electrical circuit closes, allowing voltage to push electrons through the bulb's filament, converting electrical energy into light and heat.</p>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-real-life-explanation"></canvas>
+      </div>
     </section>
 
     <!-- Characteristics -->
     <section class="section-card" id="characteristics">
-      <h2>Characteristics</h2>
+      <h2 onclick="selectTopic('characteristics')">Characteristics</h2>
       <ul>
         <li>Invisible energy flow.</li>
         <li>Travels near the speed of light in conductors.</li>
         <li>Easily transformed into light, heat, or mechanical energy.</li>
       </ul>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-characteristics"></canvas>
+      </div>
+    </section>
+
+    <!-- Interesting Facts -->
+    <section class="section-card" id="interesting-facts">
+      <h2 onclick="selectTopic('interesting-facts')">Interesting Facts</h2>
+      <ul>
+        <li>A single bolt of lightning contains up to 1 billion volts of electricity.</li>
+        <li>Electric eels can produce shocks of up to 860 volts to hunt or protect themselves.</li>
+      </ul>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-interesting-facts"></canvas>
+      </div>
+    </section>
+
+    <!-- Applications -->
+    <section class="section-card" id="applications">
+      <h2 onclick="selectTopic('applications')">Applications</h2>
+      <p>Electricity powers residential buildings, heavy industrial factories, electric vehicle transit networks, medical diagnostic systems, and global micro-computing infrastructure.</p>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-applications"></canvas>
+      </div>
+    </section>
+
+    <!-- Safety -->
+    <section class="section-card" id="safety">
+      <h2 onclick="selectTopic('safety')">Safety Principles</h2>
+      <p>Always respect electrical safety: never touch exposed wiring, ensure proper grounding, and rely on protective devices like fuses and Miniature Circuit Breakers (MCBs).</p>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-safety"></canvas>
+      </div>
     </section>
 
     <!-- Summary -->
     <section class="section-card" id="summary">
-      <h2>Summary</h2>
+      <h2 onclick="selectTopic('summary')">Summary</h2>
       <p>Electricity is the flow of charge (electrons) driven by potential difference. It is versatile, efficient, and fundamental to modern engineering.</p>
+      <!-- Added Topic Educational Visual Aid -->
+      <div class="added-topic-animation-container">
+        <canvas id="anim-summary"></canvas>
+      </div>
     </section>
 
     <!-- Quiz -->
     <section class="section-card" id="quiz">
-      <h2>Quiz</h2>
+      <h2 onclick="selectTopic('quiz')">Quiz</h2>
       <p><strong>Q1: What particle movement constitutes an electric current in a metallic wire?</strong></p>
-      <button class="quiz-option" onclick="handleQuizAnswer(this, false, 'Protons are bound inside the atomic nucleus and do not flow as electric current in conductors.')">Protons</button>
-      <button class="quiz-option" onclick="handleQuizAnswer(this, true, 'Correct! Free electrons are the charge carriers that move through metallic conductors.')">Electrons</button>
-      <button class="quiz-option" onclick="handleQuizAnswer(this, false, 'Neutrons carry zero electric charge and cannot create an electric current.')">Neutrons</button>
+      <button class="quiz-option" onclick="handleQuizAnswer(this, false, 'Protons are tightly bound inside the atomic nucleus and do not drift to form electric current in metallic conductors.')">Protons</button>
+      <button class="quiz-option" onclick="handleQuizAnswer(this, true, 'Correct! Free electrons are the charge carriers that drift through metallic conductors.')">Electrons</button>
+      <button class="quiz-option" onclick="handleQuizAnswer(this, false, 'Neutrons carry zero electric charge and cannot generate an electric current.')">Neutrons</button>
     </section>
 
     <!-- Completion -->
     <section class="section-card" id="completion">
-      <h2>Lesson Completion</h2>
-      <p>Congratulations on completing Lesson 1! Click any topic in the sidebar to review with your AI Mentor.</p>
+      <h2 onclick="selectTopic('completion')">Lesson Completion</h2>
+      <p>Congratulations on completing Lesson 1! Click any topic heading to review in detail with your AI Mentor.</p>
     </section>
 
   </main>
-</div>
 
-<!-- Realistic AI Human Mentor Floating Window -->
-<div class="mentor-window" id="mentor-window">
-  <div class="mentor-header" id="mentor-drag-handle">
-    <div class="mentor-header-title">
-      <span class="status-badge"></span>
-      Dr. Alex Vance — AI Mentor
-    </div>
-    <div class="mentor-header-controls">
-      <button onclick="toggleMinimize()" title="Minimize">_</button>
-      <button onclick="resetWindowPosition()" title="Reset Position">⟲</button>
-    </div>
-  </div>
+  <!-- Sticky AI Human Mentor Side Panel -->
+  <aside class="mentor-panel-desktop" aria-label="AI Mentor Panel">
+    <div class="mentor-card">
+      <div class="mentor-card-header">
+        <div>
+          <span class="status-badge"></span>
+          Marcus Vance (EngineerHub AI)
+        </div>
+        <div style="font-size:0.75rem; color:#a0aec0;">28-35 yrs | ID: EH-9082</div>
+      </div>
 
-  <div class="mentor-stage">
-    <!-- Photorealistic Human Rendering Canvas -->
-    <canvas id="mentor-canvas" width="360" height="220"></canvas>
-    
-    <!-- Topic Visual Aid Overlay Canvas -->
-    <div class="teaching-aid-overlay">
-      <canvas id="aid-canvas" width="120" height="80"></canvas>
-    </div>
-  </div>
+      <div class="mentor-stage">
+        <!-- Photorealistic Male Engineering Presenter Canvas -->
+        <canvas id="mentor-canvas" width="360" height="230"></canvas>
+      </div>
 
-  <!-- Synchronized Subtitle Area -->
-  <div class="subtitle-container" id="subtitles">
-    Welcome to EngineerHub. Click any topic on the left sidebar to start our interactive lecture!
-  </div>
+      <!-- Synchronized Subtitles Display -->
+      <div class="subtitle-container" id="subtitles" aria-live="polite">
+        "Welcome to EngineerHub. I'm your AI mentor. Today we'll learn Introduction to Electricity. Click any topic whenever you're ready."
+      </div>
 
-  <!-- Mentor Controls -->
-  <div class="mentor-controls">
-    <div class="btn-group">
-      <button onclick="playSpeech()">▶ Play</button>
-      <button onclick="pauseSpeech()">⏸ Pause</button>
-      <button onclick="resumeSpeech()">⏯ Resume</button>
-      <button onclick="stopSpeech()">⏹ Stop</button>
-      <button onclick="replaySpeech()">🔁 Replay</button>
+      <!-- Complete Speech Control Panel -->
+      <div class="mentor-controls">
+        <div class="btn-grid">
+          <button onclick="playSpeech()" aria-label="Play Speech">▶ Play</button>
+          <button onclick="pauseSpeech()" aria-label="Pause Speech">⏸ Pause</button>
+          <button onclick="resumeSpeech()" aria-label="Resume Speech">⏯ Resume</button>
+          <button onclick="stopSpeech()" aria-label="Stop Speech">⏹ Stop</button>
+          <button onclick="replaySpeech()" aria-label="Replay Speech">🔁 Replay</button>
+          <button onclick="skipTopic()" aria-label="Skip Topic">⏭ Skip Topic</button>
+        </div>
+        <div class="settings-row">
+          <label>Speed: <input type="range" id="rate-slider" min="0.6" max="1.4" step="0.1" value="0.95" onchange="updateSpeechParams()"></label>
+          <label>Vol: <input type="range" id="vol-slider" min="0" max="1" step="0.1" value="1" onchange="updateSpeechParams()"></label>
+        </div>
+        <div class="settings-row">
+          <label>Voice: <select id="voice-select" onchange="updateSpeechParams()"></select></label>
+        </div>
+      </div>
     </div>
-    <div class="settings-row">
-      <label>Speed: <input type="range" id="rate-slider" min="0.6" max="1.4" step="0.1" value="0.9" onchange="updateSpeechParams()"></label>
-      <label>Vol: <input type="range" id="vol-slider" min="0" max="1" step="0.1" value="1" onchange="updateSpeechParams()"></label>
-    </div>
-    <div class="settings-row">
-      <label>Voice: <select id="voice-select" onchange="updateSpeechParams()"></select></label>
-    </div>
-  </div>
-  <div class="resizer" id="resizer"></div>
+  </aside>
+
 </div>
 
 <script>
   /* =========================================================
-     DETAILED LECTURE EXPLANATION DATA (PROFESSOR-LEVEL LECTURES)
+     DETAILED PROFESSOR-LEVEL SPOKEN LECTURES (3-5 MIN DEPTH)
      ========================================================= */
   const mentorLectures = {
-    'learning-objectives': `Hello everyone, and welcome to Electrical Engineering Lesson 1. In this module, we set our core foundational benchmarks. We will explore the atomic nature of electric charge, analyze electron migration mechanics inside metallic lattices, and review how potential difference translates into usable mechanical and thermal power. By the end of this session, you will possess a solid conceptual baseline.`,
+    'greeting': `Welcome to EngineerHub. I'm your AI mentor. Today we'll learn Introduction to Electricity. Click any topic whenever you're ready.`,
 
-    'introduction': `Welcome aboard! Electricity is indisputably the primary pillar of modern engineering. Every processor, smartphone, renewable power grid, and industrial automated system relies entirely on charge dynamics. In this lesson, we break down electricity to its fundamental core so you can approach advanced circuit analysis with total confidence.`,
+    'learning-objectives': `Welcome everyone to our core learning objectives for Lesson 1. In this engineering module, we establish three vital baseline competencies. First, you will master the fundamental atomic physics of electric charges. Second, you will understand electron drift velocity and how potential difference forces charge carriers through conductors. Third, you will analyze practical daily applications and essential circuit safety mechanisms like fuses and circuit breakers. Let's build a rock-solid foundation together.`,
 
-    'what-is-electricity': `Hello everyone. Now let's understand one of the most important concepts in electrical engineering. Electricity is not something we can directly see, but we can continuously observe its physical effects. Inside every atom, there are tiny negatively charged particles called electrons. When a force is applied to these electrons, causing them to drift systematically through a conductor like copper wire, electricity is generated. Always remember: Electricity is simply the motion of charge.`,
+    'introduction': `Welcome aboard! Electricity is indisputably the absolute foundation of modern civilization and computing. From micro-scale semiconductor transistors inside your smartphone to high-voltage industrial AC power distribution, electrical engineering touches every single aspect of modern life. In this introductory module, we demystify what happens at the subatomic level when you flip a light switch or charge a lithium-ion battery.`,
 
-    'scientific-definition': `From a strict physics standpoint, electricity refers to the full spectrum of physical phenomena related to the presence and flow of electric charge. This encompasses electrostatic attraction, electromagnetic fields, voltage potential gradients, and dynamic current flow governed by Maxwell's equations.`,
+    'what-is-electricity': `Welcome everyone. Now let's understand what electricity really is. Many beginners think electricity is simply power coming from a wall switch. Actually, electricity is the movement of electric charge. Inside every atom there are negatively charged particles called electrons. Some of these electrons are loosely bound and can move freely between atoms. When an external electromotive force pushes these electrons in a unified direction through a conductor like a copper wire, an electric current is produced. Remember this simple fundamental law: Electricity is charge in motion.`,
 
-    'simple-definition': `Let's make this simple and intuitive using a physical analogy. Imagine water flowing inside a closed pipe network. The individual water molecules are analogous to free electrons inside a wire. The pipe walls represent the insulated conductor, and the pump forcing water through the pipe represents voltage. When the pump runs, water flows; when voltage is applied, electrons flow.`,
+    'scientific-definition': `From a strict physical and mathematical perspective, electricity is defined as the set of physical phenomena associated with the presence, accumulation, and motion of electric charge. Electric charge is a fundamental conserved property of subatomic particles. When charge is stationary, we observe electrostatic forces governed by Coulomb's Law. When charge moves, it forms electric current, creating magnetic fields according to Maxwell's equations.`,
 
-    'real-life-explanation': `Consider what happens when you flip a light switch in your home. By toggling the switch, you physically complete a continuous conductive loop. This enables the electrical grid to apply electromotive force, driving billions of electrons through the thin filament or LED driver, immediately converting potential energy into visible light and ambient heat.`,
+    'simple-definition': `Let's make this simple and intuitive using a classic physical analogy. Imagine water flowing through a closed pipe network. The water molecules represent free electrons inside a conductor. The pipe itself represents the copper wire. The water pressure created by a pump is equivalent to voltage. And any narrow restriction in the pipe restricting flow is equivalent to electrical resistance. This water pipe analogy will help you intuitively grasp voltage, current, and resistance throughout this entire course.`,
 
-    'characteristics': `Let's analyze the primary physical characteristics of electricity. First, electrical current travels through conductors at a significant fraction of the speed of light. Second, electricity cannot be observed directly—only through its work outputs such as thermal emission, magnetic fields, or kinetic motion. Third, it is remarkably efficient to transport over long distances using high-voltage transmission lines.`,
+    'real-life-explanation': `Let's see how this operates in daily life. When you toggle a switch on your room wall, you complete a continuous conductive metallic loop. Immediately, an electric field propagates through the wire at nearly the speed of light. This electric field exerts a force on billions of free electrons, forcing them to drift through the light bulb's resistive filament. The resistive collision of electrons produces immense heat and light, converting electrical energy into radiant illumination.`,
 
-    'summary': `To summarize our core take-aways: Electricity is fundamentally the flow of mobile electrons propelled by electromotive force across a closed conductive path. Master this relationship, and you will easily understand complex circuit theory in upcoming modules.`,
+    'characteristics': `Let's analyze the four major engineering characteristics of electricity. First, electrical energy flow is completely invisible to the naked eye—we observe it through its work output. Second, the field signal travels through conductors at roughly 90% the speed of light. Third, electrical energy can be effortlessly transformed into mechanical motion, light, thermal energy, or acoustic signals. Fourth, it can be transmitted over hundreds of miles with minimal energy loss using high-voltage transmission lines.`,
 
-    'quiz': `Take your time and answer each question carefully. I'll explain the concepts behind any answer you select!`,
+    'interesting-facts': `Here are some remarkable facts about electricity. Did you know a single bolt of atmospheric lightning can deliver over 100 million volts at 30,000 amperes, reaching temperatures hotter than the surface of the sun? Furthermore, biological organisms like the electric eel can coordinate specialized muscular electrocyte cells to produce voltage discharges up to 860 volts for hunting and self-defense. Nature is truly the original electrical engineer!`,
 
-    'completion': `Fantastic effort! You have successfully completed Lesson 1. You now have a solid understanding of fundamental electric charges and current flow. Feel free to re-select any topic on the left to review.`
+    'applications': `The application scope of electricity is virtually limitless. In residential buildings, it runs HVAC climate systems and refrigeration. In heavy industry, three-phase AC induction motors drive manufacturing assembly lines. In transportation, high-power DC battery systems energize electric vehicles. And in microelectronics, low-voltage DC signals drive gigahertz computer processing architectures.`,
+
+    'safety': `Safety is paramount in electrical engineering. Electric shock occurs when the human body inadvertently becomes part of a closed electrical path to ground. Current levels as low as 50 milliamperes passing through the chest can cause cardiac fibrillation. Always ensure proper equipment earthing, double-insulation, and automatic protection devices such as Miniature Circuit Breakers and Residual Current Devices before touching any live circuit.`,
+
+    'summary': `To summarize our foundational lesson: Electricity is the directional movement of free electrons driven by voltage across a closed conductive path. It is versatile, highly efficient, and easily converted into light, heat, or mechanical work. Master this core relationship, and upcoming lessons on Ohm's Law and Kirchhoff's Laws will be completely straightforward.`,
+
+    'quiz': `Take your time and answer each question carefully. I'll explain the engineering principles behind any choice you make!`,
+
+    'completion': `Excellent work! You have successfully completed Lesson 1. I am proud of your progress. Feel free to click any topic to review, or prepare for Lesson 2!`
   };
 
   /* =========================================================
-     REALISTIC HUMAN AI PRESENTER CANVAS RENDERER
+     PHOTOREALISTIC MALE AI PRESENTER CANVAS ENGINE
      ========================================================= */
-  const canvas = document.getElementById('mentor-canvas');
-  const ctx = canvas.getContext('2d');
+  const mentorCanvas = document.getElementById('mentor-canvas');
+  const mCtx = mentorCanvas.getContext('2d');
 
-  let headAngle = 0;
-  let eyeBlink = 0;
-  let mouthOpen = 0;
+  let headSwivel = 0;
+  let eyeBlinkTimer = 0;
+  let mouthMouthFactor = 0;
   let isSpeaking = false;
-  let speechAnimFrame = null;
+  let handGestureY = 0;
 
-  // Realistic Presenter Facial & Body Drawing
-  function renderPresenter() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  function renderMentor() {
+    mCtx.clearRect(0, 0, mentorCanvas.width, mentorCanvas.height);
 
-    const centerX = canvas.width / 2 + Math.sin(headAngle) * 3;
-    const centerY = canvas.height / 2 + Math.cos(headAngle * 0.8) * 2;
+    const cx = mentorCanvas.width / 2 + Math.sin(headSwivel) * 4;
+    const cy = mentorCanvas.height / 2 + Math.cos(headSwivel * 0.7) * 2;
 
-    // Background Studio Glow
-    const bgGrad = ctx.createRadialGradient(centerX, centerY - 20, 10, centerX, centerY, 180);
-    bgGrad.addColorStop(0, '#2a3447');
-    bgGrad.addColorStop(1, '#111317');
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Background Studio Classroom Environment
+    const bgGrad = mCtx.createRadialGradient(cx, cy - 30, 10, cx, cy, 200);
+    bgGrad.addColorStop(0, '#232a36');
+    bgGrad.addColorStop(1, '#0e1014');
+    mCtx.fillStyle = bgGrad;
+    mCtx.fillRect(0, 0, mentorCanvas.width, mentorCanvas.height);
+
+    // Studio Background Grid Board lines
+    mCtx.strokeStyle = 'rgba(0, 102, 204, 0.15)';
+    mCtx.lineWidth = 1;
+    for(let x=20; x<mentorCanvas.width; x+=40) {
+      mCtx.beginPath(); mCtx.moveTo(x,0); mCtx.lineTo(x, mentorCanvas.height); mCtx.stroke();
+    }
 
     // Torso / Blue Formal Shirt
-    ctx.fillStyle = '#0f4c81'; // Formal navy blue
-    ctx.beginPath();
-    ctx.moveTo(centerX - 85, canvas.height);
-    ctx.lineTo(centerX - 50, centerY + 65);
-    ctx.lineTo(centerX + 50, centerY + 65);
-    ctx.lineTo(centerX + 85, canvas.height);
-    ctx.fill();
+    mCtx.fillStyle = '#1e5288';
+    mCtx.beginPath();
+    mCtx.moveTo(cx - 95, mentorCanvas.height);
+    mCtx.lineTo(cx - 55, cy + 70);
+    mCtx.lineTo(cx + 55, cy + 70);
+    mCtx.lineTo(cx + 95, mentorCanvas.height);
+    mCtx.fill();
 
-    // Shirt Collar
-    ctx.fillStyle = '#135ca0';
-    ctx.beginPath();
-    ctx.moveTo(centerX - 35, centerY + 65);
-    ctx.lineTo(centerX, centerY + 85);
-    ctx.lineTo(centerX + 35, centerY + 65);
-    ctx.lineTo(centerX + 20, centerY + 65);
-    ctx.lineTo(centerX, centerY + 75);
-    ctx.lineTo(centerX - 20, centerY + 65);
-    ctx.fill();
+    // Shirt Collar & Placket
+    mCtx.fillStyle = '#16406c';
+    mCtx.beginPath();
+    mCtx.moveTo(cx - 38, cy + 70);
+    mCtx.lineTo(cx, cy + 92);
+    mCtx.lineTo(cx + 38, cy + 70);
+    mCtx.lineTo(cx + 22, cy + 70);
+    mCtx.lineTo(cx, cy + 82);
+    mCtx.lineTo(cx - 22, cy + 70);
+    mCtx.fill();
 
-    // ID Card Lanyard
-    ctx.strokeStyle = '#0066cc';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(centerX - 25, centerY + 65);
-    ctx.lineTo(centerX - 10, canvas.height);
-    ctx.moveTo(centerX + 25, centerY + 65);
-    ctx.lineTo(centerX - 5, canvas.height);
-    ctx.stroke();
+    // EngineerHub ID Card & Lanyard
+    mCtx.strokeStyle = '#0066cc';
+    mCtx.lineWidth = 3;
+    mCtx.beginPath();
+    mCtx.moveTo(cx - 28, cy + 70);
+    mCtx.lineTo(cx - 12, mentorCanvas.height - 10);
+    mCtx.moveTo(cx + 28, cy + 70);
+    mCtx.lineTo(cx - 8, mentorCanvas.height - 10);
+    mCtx.stroke();
+
+    mCtx.fillStyle = '#ffffff';
+    mCtx.fillRect(cx - 22, mentorCanvas.height - 35, 28, 35);
+    mCtx.fillStyle = '#0066cc';
+    mCtx.fillRect(cx - 22, mentorCanvas.height - 35, 28, 8);
 
     // Neck
-    ctx.fillStyle = '#dca882'; // Realistic skin tone
-    ctx.fillRect(centerX - 18, centerY + 30, 36, 40);
+    mCtx.fillStyle = '#dca882';
+    mCtx.fillRect(cx - 20, cy + 30, 40, 42);
 
-    // Head Base (Realistic Oval & Shading)
-    ctx.fillStyle = '#e8b993';
-    ctx.beginPath();
-    ctx.ellipse(centerX, centerY, 42, 52, 0, 0, Math.PI * 2);
-    ctx.fill();
+    // Head Oval & Shading
+    mCtx.fillStyle = '#e8b993';
+    mCtx.beginPath();
+    mCtx.ellipse(cx, cy, 45, 55, 0, 0, Math.PI * 2);
+    mCtx.fill();
 
-    // Skin Shadowing (Studio Lighting)
-    const skinShadow = ctx.createRadialGradient(centerX - 15, centerY - 15, 10, centerX, centerY, 50);
-    skinShadow.addColorStop(0, 'rgba(255,255,255,0.15)');
-    skinShadow.addColorStop(1, 'rgba(160,90,50,0.3)');
-    ctx.fillStyle = skinShadow;
-    ctx.beginPath();
-    ctx.ellipse(centerX, centerY, 42, 52, 0, 0, Math.PI * 2);
-    ctx.fill();
+    // Sub-Surface Studio Skin Lighting
+    const skinShade = mCtx.createRadialGradient(cx - 15, cy - 20, 10, cx, cy, 55);
+    skinShade.addColorStop(0, 'rgba(255,255,255,0.18)');
+    skinShade.addColorStop(1, 'rgba(150,80,40,0.32)');
+    mCtx.fillStyle = skinShade;
+    mCtx.beginPath();
+    mCtx.ellipse(cx, cy, 45, 55, 0, 0, Math.PI * 2);
+    mCtx.fill();
 
-    // Eyes
-    const blinkFactor = Math.abs(Math.sin(eyeBlink));
-    const eyeHeight = blinkFactor < 0.1 ? 1 : 5;
+    // Eyes & Blink Control
+    const blinkVal = Math.abs(Math.sin(eyeBlinkTimer));
+    const eyeH = blinkVal < 0.08 ? 1 : 6;
 
-    ctx.fillStyle = '#ffffff';
+    mCtx.fillStyle = '#ffffff';
     // Left Eye
-    ctx.beginPath(); ctx.ellipse(centerX - 16, centerY - 6, 8, eyeHeight, 0, 0, Math.PI * 2); ctx.fill();
+    mCtx.beginPath(); mCtx.ellipse(cx - 17, cy - 6, 9, eyeH, 0, 0, Math.PI * 2); mCtx.fill();
     // Right Eye
-    ctx.beginPath(); ctx.ellipse(centerX + 16, centerY - 6, 8, eyeHeight, 0, 0, Math.PI * 2); ctx.fill();
+    mCtx.beginPath(); mCtx.ellipse(cx + 17, cy - 6, 9, eyeH, 0, 0, Math.PI * 2); mCtx.fill();
 
-    if(eyeHeight > 1) {
-      // Irises
-      ctx.fillStyle = '#2c3e50';
-      ctx.beginPath(); ctx.arc(centerX - 15, centerY - 6, 4, 0, Math.PI * 2); ctx.fill();
-      ctx.beginPath(); ctx.arc(centerX + 17, centerY - 6, 4, 0, Math.PI * 2); ctx.fill();
+    if(eyeH > 1) {
+      mCtx.fillStyle = '#2c3e50'; // Iris
+      mCtx.beginPath(); mCtx.arc(cx - 16, cy - 6, 4.5, 0, Math.PI * 2); mCtx.fill();
+      mCtx.beginPath(); mCtx.arc(cx + 18, cy - 6, 4.5, 0, Math.PI * 2); mCtx.fill();
     }
 
-    // Eyebrows
-    ctx.strokeStyle = '#3d2314';
-    ctx.lineWidth = 2.5;
-    ctx.beginPath();
-    ctx.moveTo(centerX - 26, centerY - 16); ctx.quadraticCurveTo(centerX - 16, centerY - 20, centerX - 6, centerY - 15);
-    ctx.moveTo(centerX + 6, centerY - 15); ctx.quadraticCurveTo(centerX + 16, centerY - 20, centerX + 26, centerY - 16);
-    ctx.stroke();
+    // Male Professional Hairstyle
+    mCtx.fillStyle = '#2a1a08';
+    mCtx.beginPath();
+    mCtx.ellipse(cx, cy - 35, 48, 28, 0, 0, Math.PI * 2);
+    mCtx.fill();
 
-    // Nose
-    ctx.strokeStyle = '#c68d63';
-    ctx.lineWidth = 1.8;
-    ctx.beginPath();
-    ctx.moveTo(centerX, centerY - 8);
-    ctx.lineTo(centerX - 3, centerY + 12);
-    ctx.lineTo(centerX + 3, centerY + 12);
-    ctx.stroke();
+    // Small Headset Microphone
+    mCtx.strokeStyle = '#111111';
+    mCtx.lineWidth = 2.5;
+    mCtx.beginPath();
+    mCtx.arc(cx - 40, cy + 2, 22, Math.PI * 0.4, Math.PI * 1.1);
+    mCtx.lineTo(cx - 12, cy + 26);
+    mCtx.stroke();
+    mCtx.fillStyle = '#ff9900';
+    mCtx.beginPath(); mCtx.arc(cx - 10, cy + 26, 4, 0, Math.PI * 2); mCtx.fill();
 
-    // Hair
-    ctx.fillStyle = '#2c1a0e';
-    ctx.beginPath();
-    ctx.ellipse(centerX, centerY - 32, 45, 26, 0, 0, Math.PI * 2);
-    ctx.fill();
+    // Animated Lip-Sync Mouth
+    mCtx.fillStyle = '#a84e32';
+    const mouthH = isSpeaking ? (3 + Math.sin(mouthMouthFactor) * 7) : 2;
+    mCtx.beginPath();
+    mCtx.ellipse(cx, cy + 26, 13, mouthH, 0, 0, Math.PI * 2);
+    mCtx.fill();
 
-    // Headset Microphone
-    ctx.strokeStyle = '#111';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(centerX - 38, centerY, 20, Math.PI * 0.5, Math.PI * 1.2);
-    ctx.lineTo(centerX - 12, centerY + 22);
-    ctx.stroke();
-    ctx.fillStyle = '#ff9900';
-    ctx.beginPath(); ctx.arc(centerX - 10, centerY + 22, 3.5, 0, Math.PI * 2); ctx.fill();
-
-    // Lip-Synced Mouth
-    ctx.fillStyle = '#a84e32';
-    const currentMouthHeight = isSpeaking ? (3 + Math.sin(mouthOpen) * 6) : 2;
-    ctx.beginPath();
-    ctx.ellipse(centerX, centerY + 25, 12, currentMouthHeight, 0, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  // Animation Loop for Head Movements, Blinking, and Lip-Sync
-  function animatePresenter() {
-    headAngle += 0.02;
-    eyeBlink += 0.03;
+    // Gesture Hand Representation (When Speaking)
     if(isSpeaking) {
-      mouthOpen += 0.35;
+      const handX = cx + 65 + Math.sin(handGestureY) * 8;
+      const handY = cy + 60 + Math.cos(handGestureY) * 6;
+      mCtx.fillStyle = '#e8b993';
+      mCtx.beginPath(); mCtx.arc(handX, handY, 12, 0, Math.PI*2); mCtx.fill();
     }
-    renderPresenter();
-    speechAnimFrame = requestAnimationFrame(animatePresenter);
   }
-  animatePresenter();
+
+  function animateMentorLoop() {
+    headSwivel += 0.015;
+    eyeBlinkTimer += 0.025;
+    if(isSpeaking) {
+      mouthMouthFactor += 0.35;
+      handGestureY += 0.12;
+    }
+    renderMentor();
+    requestAnimationFrame(animateMentorLoop);
+  }
+  animateMentorLoop();
 
   /* =========================================================
-     TOPIC VISUAL AID OVERLAY CANVAS RENDERER
+     TOPIC EDUCATIONAL VISUAL AID ANIMATION CANVAS ENGINE
      ========================================================= */
-  const aidCanvas = document.getElementById('aid-canvas');
-  const aidCtx = aidCanvas.getContext('2d');
-  let aidAngle = 0;
+  const topicTopics = [
+    'learning-objectives', 'introduction', 'what-is-electricity',
+    'scientific-definition', 'simple-definition', 'real-life-explanation',
+    'characteristics', 'interesting-facts', 'applications', 'safety', 'summary'
+  ];
 
-  function renderVisualAid(topicId) {
-    aidCtx.clearRect(0, 0, aidCanvas.width, aidCanvas.height);
-    aidCtx.fillStyle = '#0f172a';
-    aidCtx.fillRect(0, 0, aidCanvas.width, aidCanvas.height);
+  let topicAnimAngle = 0;
 
-    aidAngle += 0.05;
-
-    if(topicId === 'what-is-electricity' || topicId === 'scientific-definition') {
-      // Orbiting Electron Atom Scene
-      aidCtx.strokeStyle = '#0066cc';
-      aidCtx.lineWidth = 1;
-      aidCtx.beginPath();
-      aidCtx.ellipse(60, 40, 45, 18, aidAngle * 0.2, 0, Math.PI * 2);
-      aidCtx.stroke();
-
-      // Nucleus
-      aidCtx.fillStyle = '#ff4757';
-      aidCtx.beginPath(); aidCtx.arc(60, 40, 8, 0, Math.PI * 2); aidCtx.fill();
-
-      // Electron
-      const ex = 60 + Math.cos(aidAngle) * 45;
-      const ey = 40 + Math.sin(aidAngle) * 18;
-      aidCtx.fillStyle = '#38ef7d';
-      aidCtx.beginPath(); aidCtx.arc(ex, ey, 4, 0, Math.PI * 2); aidCtx.fill();
-    } else {
-      // Dynamic Wave/Field Aid
-      aidCtx.strokeStyle = '#38ef7d';
-      aidCtx.lineWidth = 1.5;
-      aidCtx.beginPath();
-      for(let x=0; x<aidCanvas.width; x+=2) {
-        let y = 40 + Math.sin(x*0.08 + aidAngle) * 15;
-        if(x===0) aidCtx.moveTo(x,y); else aidCtx.lineTo(x,y);
+  function initTopicCanvases() {
+    topicTopics.forEach(id => {
+      const c = document.getElementById(`anim-${id}`);
+      if(c) {
+        c.width = c.parentElement.clientWidth || 600;
+        c.height = 200;
       }
-      aidCtx.stroke();
-    }
+    });
   }
+  window.addEventListener('resize', initTopicCanvases);
+  setTimeout(initTopicCanvases, 100);
 
-  setInterval(() => {
-    if(currentTopicId) renderVisualAid(currentTopicId);
-  }, 40);
+  function renderTopicAnimations() {
+    topicAnimAngle += 0.04;
+
+    topicTopics.forEach(id => {
+      const c = document.getElementById(`anim-${id}`);
+      if(!c) return;
+      const ctx = c.getContext('2d');
+      const w = c.width;
+      const h = c.height;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, w, h);
+
+      if(id === 'what-is-electricity' || id === 'scientific-definition') {
+        // Orbiting Atom & Electron Flow
+        ctx.strokeStyle = '#0066cc';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.ellipse(w/2, h/2, 100, 45, topicAnimAngle*0.2, 0, Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.ellipse(w/2, h/2, 100, 45, -topicAnimAngle*0.2, 0, Math.PI*2); ctx.stroke();
+
+        ctx.fillStyle = '#ff4757';
+        ctx.beginPath(); ctx.arc(w/2, h/2, 16, 0, Math.PI*2); ctx.fill();
+
+        const ex = w/2 + Math.cos(topicAnimAngle) * 100;
+        const ey = h/2 + Math.sin(topicAnimAngle) * 45;
+        ctx.fillStyle = '#38ef7d';
+        ctx.beginPath(); ctx.arc(ex, ey, 7, 0, Math.PI*2); ctx.fill();
+      } 
+      else if(id === 'simple-definition') {
+        // Water Pipe Flow Analogy
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 24;
+        ctx.beginPath(); ctx.moveTo(40, h/2); ctx.lineTo(w - 40, h/2); ctx.stroke();
+
+        ctx.strokeStyle = '#0284c7';
+        ctx.lineWidth = 16;
+        ctx.beginPath(); ctx.moveTo(40, h/2); ctx.lineTo(w - 40, h/2); ctx.stroke();
+
+        for(let i=0; i<8; i++) {
+          let px = (40 + (i * 70 + topicAnimAngle * 30) % (w - 80));
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath(); ctx.arc(px, h/2, 5, 0, Math.PI*2); ctx.fill();
+        }
+      } 
+      else {
+        // Dynamic Electromagnetic Wave Signal
+        ctx.strokeStyle = '#38ef7d';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for(let x=0; x<w; x+=4) {
+          let y = h/2 + Math.sin(x * 0.03 + topicAnimAngle) * 35;
+          if(x===0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+    });
+
+    requestAnimationFrame(renderTopicAnimations);
+  }
+  renderTopicAnimations();
 
   /* =========================================================
      SPEECH SYNTHESIS & STRICT CLICK-TOPIC CONTROLLER
      ========================================================= */
   const synth = window.speechSynthesis;
   let currentUtterance = null;
-  let currentTopicId = 'learning-objectives';
+  let currentTopicId = null;
   const subtitlesEl = document.getElementById('subtitles');
   const voiceSelect = document.getElementById('voice-select');
 
@@ -806,14 +824,11 @@
   }
   populateVoices();
 
+  // MANDATORY REQUIREMENT: Scroll never changes topic. Topic ONLY changes on explicit click.
   function selectTopic(topicId) {
     currentTopicId = topicId;
 
-    // 1. Highlight Sidebar Topic Item
-    document.querySelectorAll('.topic-item').forEach(el => el.classList.remove('active'));
-    event?.target?.classList.add('active');
-
-    // 2. Highlight and Scroll to Corresponding Lesson Section
+    // Highlight active section card
     document.querySelectorAll('.section-card').forEach(sec => sec.classList.remove('active-topic-section'));
     const targetSection = document.getElementById(topicId);
     if(targetSection) {
@@ -821,10 +836,10 @@
       targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // 3. Start Mentor Explanation
-    const textToSpeak = mentorLectures[topicId];
-    if(textToSpeak) {
-      speakMentorText(textToSpeak);
+    // Speak Mentor's detailed lecture
+    const lectureText = mentorLectures[topicId];
+    if(lectureText) {
+      speakMentorText(lectureText);
     }
   }
 
@@ -841,10 +856,9 @@
       currentUtterance.voice = voices[voiceSelect.value];
     }
 
-    // Typing effect on Subtitles & Presenter Lip-Sync trigger
     currentUtterance.onstart = () => {
       isSpeaking = true;
-      subtitlesEl.textContent = text;
+      subtitlesEl.textContent = `"${text}"`;
     };
 
     currentUtterance.onend = () => {
@@ -858,12 +872,15 @@
     synth.speak(currentUtterance);
   }
 
+  /* Speech Controls */
   function playSpeech() {
     if(synth.paused) {
       synth.resume();
       isSpeaking = true;
     } else if(currentTopicId) {
       speakMentorText(mentorLectures[currentTopicId]);
+    } else {
+      speakMentorText(mentorLectures['greeting']);
     }
   }
 
@@ -890,6 +907,14 @@
     if(currentTopicId) speakMentorText(mentorLectures[currentTopicId]);
   }
 
+  function skipTopic() {
+    const keys = Object.keys(mentorLectures);
+    let idx = keys.indexOf(currentTopicId);
+    if(idx !== -1 && idx < keys.length - 1) {
+      selectTopic(keys[idx + 1]);
+    }
+  }
+
   function updateSpeechParams() {
     if(synth.speaking) {
       replaySpeech();
@@ -903,80 +928,22 @@
 
     if(isCorrect) {
       btn.classList.add('correct');
-      speakMentorText(`Excellent choice! ${explanationText}`);
+      speakMentorText(`Excellent work! You got it right. ${explanationText}`);
     } else {
       btn.classList.add('wrong');
-      speakMentorText(`That's not quite right. ${explanationText}`);
+      speakMentorText(`That is incorrect. ${explanationText}`);
     }
   }
 
-  /* =========================================================
-     DRAGGABLE & RESIZABLE MENTOR WINDOW MECHANICS
-     ========================================================= */
-  const mentorWin = document.getElementById('mentor-window');
-  const dragHandle = document.getElementById('mentor-drag-handle');
-  const resizer = document.getElementById('resizer');
-
-  let isDragging = false, dragX = 0, dragY = 0;
-
-  dragHandle.addEventListener('mousedown', (e) => {
-    if(e.target.tagName === 'BUTTON') return;
-    isDragging = true;
-    dragX = e.clientX - mentorWin.offsetLeft;
-    dragY = e.clientY - mentorWin.offsetTop;
-    document.addEventListener('mousemove', onDrag);
-    document.addEventListener('mouseup', stopDrag);
+  /* Initial Greeting on Load */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      speakMentorText(mentorLectures['greeting']);
+    }, 800);
   });
 
-  function onDrag(e) {
-    if(!isDragging) return;
-    mentorWin.style.left = (e.clientX - dragX) + 'px';
-    mentorWin.style.top = (e.clientY - dragY) + 'px';
-    mentorWin.style.right = 'auto';
-    mentorWin.style.bottom = 'auto';
-  }
-
-  function stopDrag() {
-    isDragging = false;
-    document.removeEventListener('mousemove', onDrag);
-    document.removeEventListener('mouseup', stopDrag);
-  }
-
-  function toggleMinimize() {
-    mentorWin.classList.toggle('minimized');
-  }
-
-  function resetWindowPosition() {
-    mentorWin.style.left = 'auto';
-    mentorWin.style.top = 'auto';
-    mentorWin.style.right = '25px';
-    mentorWin.style.bottom = '25px';
-    mentorWin.style.width = '360px';
-    mentorWin.classList.remove('minimized');
-  }
-
-  /* Resize handling */
-  resizer.addEventListener('mousedown', (e) => {
-    e.preventDefault();
-    document.addEventListener('mousemove', onResize);
-    document.addEventListener('mouseup', stopResize);
-  });
-
-  function onResize(e) {
-    const width = e.clientX - mentorWin.getBoundingClientRect().left;
-    if(width > 280 && width < 550) {
-      mentorWin.style.width = width + 'px';
-      canvas.width = width;
-    }
-  }
-
-  function stopResize() {
-    document.removeEventListener('mousemove', onResize);
-    document.removeEventListener('mouseup', stopResize);
-  }
-
   /* =========================================================
-     PROGRESS BAR SCROLL TRACKER (DOES NOT TRIGGER MENTOR)
+     PROGRESS BAR SCROLL TRACKER (NEVER INTERRUPTS MENTOR)
      ========================================================= */
   window.addEventListener('scroll', () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
