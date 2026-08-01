@@ -1,691 +1,655 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 1 – Introduction to Electricity | EngineerHub AI Classroom</title>
-  
-  <!-- ========================================== -->
-  <!-- YOUR EXISTING LESSON 1 CSS GOES HERE       -->
-  <!-- ========================================== -->
-  <style>
-    /* ---------------------------------------------------- */
-    /* PLACE ALL OF YOUR EXISTING LESSON 1 STYLES UNCHANGED */
-    /* ---------------------------------------------------- */
-    
-    /* System base reset fallback (retained if not defined) */
-    :root {
-      --primary-blue: #0056b3;
-      --accent-blue: #007bff;
-      --bg-dark: #121824;
-      --text-light: #f8f9fa;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #333;
-    }
-    .lesson-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .topic-section {
-      margin-bottom: 60px;
-      padding: 24px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      position: relative;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EngineerHub - Lesson 1: Introduction to Electricity</title>
+<style>
+  :root {
+    --primary: #0066cc;
+    --primary-dark: #004080;
+    --secondary: #ff9900;
+    --bg: #f4f7f6;
+    --card-bg: #ffffff;
+    --text: #222222;
+    --subtext: #555555;
+    --border: #dddddd;
+    --teacher-bg: #22252a;
+  }
 
-  <!-- ========================================== -->
-  <!-- AI TEACHER & ANIMATIONS ADD-ON CSS STYLES  -->
-  <!-- ========================================== -->
-  <style>
-    /* --- Fixed Overlay Avatar Container --- */
-    #ai-teacher-widget {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding-bottom: 100px;
+  }
+
+  /* Progress Bar */
+  #progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: #e0e0e0;
+    z-index: 1000;
+  }
+  #progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transition: width 0.2s ease;
+  }
+
+  /* Header */
+  header {
+    background: var(--primary-dark);
+    color: white;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  header h1 { font-size: 1.8rem; }
+  header p { font-size: 0.9rem; opacity: 0.8; }
+
+  /* Layout */
+  .container {
+    display: flex;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+    gap: 20px;
+  }
+
+  .main-content {
+    flex: 1;
+    max-width: calc(100% - 340px);
+  }
+
+  /* Lesson Cards */
+  .section-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    scroll-margin-top: 20px;
+  }
+
+  .section-card h2 {
+    color: var(--primary-dark);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+  }
+
+  .section-card p, .section-card ul {
+    margin-bottom: 15px;
+  }
+
+  .section-card ul {
+    padding-left: 20px;
+  }
+
+  /* Interactive SVG Scene Containers */
+  .animated-scene {
+    width: 100%;
+    height: 220px;
+    background: #1e1e24;
+    border-radius: 8px;
+    margin: 15px 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* AI Teacher Sidebar Container */
+  .teacher-sidebar {
+    width: 320px;
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+  }
+
+  .teacher-card {
+    background: var(--teacher-bg);
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  /* SVG Avatar Styling & Keyframe Animations */
+  #teacher-svg {
+    width: 180px;
+    height: 200px;
+  }
+
+  /* Teacher Avatar Elements */
+  .eye { transform-origin: center; animation: blink 4s infinite; }
+  .mouth { transition: d 0.1s; }
+  .head { transform-origin: bottom center; transition: transform 0.3s; }
+  .arm-right { transform-origin: 130px 110px; transition: transform 0.3s; }
+  .arm-left { transform-origin: 70px 110px; transition: transform 0.3s; }
+
+  /* Breathing Animation */
+  .breathing { animation: breath 3s infinite ease-in-out; }
+  @keyframes breath {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+  }
+
+  @keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+  }
+
+  /* Subtitle Box */
+  .subtitle-box {
+    width: 100%;
+    min-height: 80px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 0.85rem;
+    color: #00ffcc;
+    font-family: monospace;
+    border-left: 3px solid var(--secondary);
+    margin-top: 10px;
+    overflow: hidden;
+  }
+
+  /* Teacher Controls */
+  .teacher-controls {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .teacher-controls button {
+    background: #333942;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+
+  .teacher-controls button:hover {
+    background: var(--primary);
+  }
+
+  .control-panel-settings {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 8px;
+    font-size: 0.75rem;
+  }
+
+  .control-panel-settings label {
+    display: flex;
+    justify-content: space-between;
+    color: #ccc;
+  }
+
+  .control-panel-settings select, .control-panel-settings input {
+    background: #333942;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 3px;
+    padding: 2px 5px;
+  }
+
+  /* Quiz styling */
+  .quiz-option {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    background: #eef3f8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: left;
+    cursor: pointer;
+  }
+  .quiz-option:hover { background: #dce7f3; }
+  .quiz-option.correct { background: #c8e6c9; border-color: #388e3c; }
+  .quiz-option.wrong { background: #ffcdd2; border-color: #d32f2f; }
+
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .container { flex-direction: column; }
+    .main-content { max-width: 100%; }
+    .teacher-sidebar {
+      width: 100%;
       position: fixed;
-      top: 80px;
-      right: 20px;
-      width: 320px;
-      z-index: 9999;
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
-      border: 2px solid #0056b3;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      box-sizing: border-box;
-      font-family: sans-serif;
+      bottom: 0;
+      top: auto;
+      height: auto;
+      z-index: 999;
     }
-
-    /* --- Responsive Positioning --- */
-    @media (max-width: 1024px) {
-      #ai-teacher-widget {
-        top: auto;
-        bottom: 20px;
-        right: 20px;
-        width: 280px;
-      }
-    }
-    @media (max-width: 600px) {
-      #ai-teacher-widget {
-        top: auto;
-        bottom: 10px;
-        right: 50%;
-        transform: translateX(50%);
-        width: 92%;
-        max-width: 360px;
-      }
-    }
-
-    #ai-teacher-widget.collapsed .teacher-body-container,
-    #ai-teacher-widget.collapsed .subtitle-box,
-    #ai-teacher-widget.collapsed .teacher-controls {
-      display: none !important;
-    }
-
-    /* --- Teacher SVG Animation Hooks --- */
-    .teacher-svg-frame {
-      width: 160px;
-      height: 180px;
-      overflow: visible;
-    }
-
-    /* Keyframe Animations */
-    @keyframes teacherBlink {
-      0%, 90%, 100% { transform: scaleY(1); }
-      95% { transform: scaleY(0.1); }
-    }
-    @keyframes teacherBreathe {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-3px); }
-    }
-    @keyframes talkMouth {
-      0%, 100% { height: 4px; }
-      50% { height: 14px; }
-    }
-    @keyframes gestureHand {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(-15deg); }
-    }
-    @keyframes pointHand {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-25px, -10px) rotate(-45deg); }
-    }
-    @keyframes thinkGesture {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(10px, -20px) rotate(30deg); }
-    }
-
-    /* Active Animation States applied by JS */
-    .eye-ball { transform-origin: center; animation: teacherBlink 4s infinite; }
-    .teacher-torso { transform-origin: bottom center; animation: teacherBreathe 3s ease-in-out infinite; }
-    
-    .state-speaking .mouth-path { animation: talkMouth 0.25s infinite alternate; }
-    .state-speaking .right-arm { transform-origin: top left; animation: gestureHand 1.2s infinite alternate; }
-    .state-pointing .left-arm { transform-origin: top right; animation: pointHand 0.8s ease-in-out infinite; }
-    .state-thinking .right-arm { transform-origin: top left; animation: thinkGesture 1.5s ease-in-out infinite; }
-    
-    /* --- Subtitle Styling --- */
-    .subtitle-box {
-      width: 100%;
-      background: #121824;
-      color: #ffffff;
-      padding: 10px 12px;
-      border-radius: 8px;
-      margin-top: 10px;
-      font-size: 0.85rem;
-      min-height: 48px;
-      box-sizing: border-box;
-      border-left: 4px solid #007bff;
-      word-wrap: break-word;
-    }
-
-    /* --- Controller GUI --- */
-    .teacher-controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      width: 100%;
-      margin-top: 10px;
-      justify-content: center;
-    }
-    .teacher-btn {
-      background: #007bff;
-      color: #fff;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.75rem;
-      font-weight: 600;
-      transition: background 0.2s;
-    }
-    .teacher-btn:hover { background: #0056b3; }
-    .teacher-select {
-      font-size: 0.7rem;
-      padding: 4px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-
-    .widget-header {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-    .widget-title {
-      font-size: 0.85rem;
-      font-weight: bold;
-      color: #0056b3;
-    }
-
-    /* --- Interactive Topic Animation Graphics (Pure CSS/SVG embedded) --- */
-    .edu-anim-container {
-      width: 100%;
-      height: 220px;
-      background: #f0f4f8;
-      border: 1px solid #d0d7de;
-      border-radius: 8px;
-      margin: 16px 0;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    /* Orbit animation for electricity atom */
-    @keyframes orbit1 {
-      from { transform: rotate(0deg) translateX(60px) rotate(0deg); }
-      to { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
-    }
-    .electron {
-      width: 12px;
-      height: 12px;
-      background: #ff4757;
-      border-radius: 50%;
-      position: absolute;
-      animation: orbit1 3s linear infinite;
-    }
-
-    /* Flowing water pipe analogy */
-    @keyframes waterFlow {
-      0% { background-position: 0 0; }
-      100% { background-position: 50px 0; }
-    }
-    .pipe-flow {
-      width: 80%;
-      height: 40px;
-      background: linear-gradient(90deg, #00d2d3 50%, #54a0ff 50%);
-      background-size: 20px 100%;
-      animation: waterFlow 1s linear infinite;
-      border-radius: 20px;
-      border: 3px solid #2e86de;
-    }
-
-    /* Confetti Canvas Overlay for Quiz Success */
-    #confetti-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 99999;
-    }
-  </style>
+    .teacher-card { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+    #teacher-svg { width: 90px; height: 100px; }
+    .subtitle-box { width: calc(100% - 110px); min-height: 60px; }
+    .teacher-controls, .control-panel-settings { display: none; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- ========================================== -->
-  <!-- AI AVATAR TEACHER OVERLAY WIDGET          -->
-  <!-- ========================================== -->
-  <div id="ai-teacher-widget" aria-label="AI Interactive Teacher Classroom" role="region">
-    <div class="widget-header">
-      <span class="widget-title">⚡ EngineerHub AI Instructor</span>
-      <button class="teacher-btn" id="toggle-collapse-btn" onclick="toggleWidgetCollapse()" aria-label="Collapse Teacher Widget">_</button>
-    </div>
+<div id="progress-container">
+  <div id="progress-bar"></div>
+</div>
 
-    <div class="teacher-body-container">
-      <!-- Clean Vector Avatar Engine -->
-      <svg class="teacher-svg-frame" viewBox="0 0 200 220" id="teacher-svg">
-        <!-- Body / Blue Shirt -->
-        <g class="teacher-torso">
-          <path d="M 40 210 L 160 210 L 150 130 L 50 130 Z" fill="#007bff" />
-          <!-- Neck & Collar -->
-          <polygon points="85,130 115,130 100,150" fill="#f1c40f" />
-          <path d="M 85 130 L 100 145 L 115 130" fill="#ffffff" />
-          <!-- Engineer ID Card Badge -->
-          <rect x="120" y="150" width="22" height="30" rx="3" fill="#ffffff" stroke="#333" stroke-width="1.5" />
-          <rect x="124" y="154" width="14" height="10" fill="#0056b3" />
-          <line x1="124" y1="170" x2="138" y2="170" stroke="#333" stroke-width="2" />
-        </g>
+<header>
+  <h1>EngineerHub - Electrical Engineering</h1>
+  <p>Lesson 1: Introduction to Electricity</p>
+</header>
 
-        <!-- Left Arm -->
-        <g class="left-arm">
-          <path d="M 50 135 L 25 170 L 35 180 L 58 145 Z" fill="#0056b3" />
-          <circle cx="25" cy="175" r="8" fill="#f5cdb4" />
-        </g>
+<div class="container">
+  <!-- Main Educational Content -->
+  <main class="main-content">
 
-        <!-- Right Arm -->
-        <g class="right-arm">
-          <path d="M 150 135 L 175 170 L 165 180 L 142 145 Z" fill="#0056b3" />
-          <circle cx="175" cy="175" r="8" fill="#f5cdb4" />
-        </g>
-
-        <!-- Head, Hair, and Headset Face Group -->
-        <g class="teacher-head">
-          <circle cx="100" cy="85" r="40" fill="#f5cdb4" />
-          <!-- Professional Hairstyle -->
-          <path d="M 60 80 Q 100 35 140 80 Q 100 50 60 80 Z" fill="#2c3e50" />
-          <!-- Eyes -->
-          <circle class="eye-ball" cx="85" cy="80" r="5" fill="#2c3e50" />
-          <circle class="eye-ball" cx="115" cy="80" r="5" fill="#2c3e50" />
-          <!-- Eyebrows -->
-          <path class="eyebrow-left" d="M 78 70 Q 85 67 92 70" stroke="#2c3e50" stroke-width="2" fill="none" />
-          <path class="eyebrow-right" d="M 108 70 Q 115 67 122 70" stroke="#2c3e50" stroke-width="2" fill="none" />
-          <!-- Mouth -->
-          <rect class="mouth-path" x="90" y="100" width="20" height="4" rx="2" fill="#c0392b" />
-          <!-- Headset Microphone -->
-          <path d="M 60 85 Q 55 105 85 108" fill="none" stroke="#111111" stroke-width="2.5" />
-          <circle cx="85" cy="108" r="4" fill="#ff4757" />
-        </g>
-      </svg>
-    </div>
-
-    <!-- Live Synchronized Subtitles -->
-    <div class="subtitle-box" id="teacher-subtitle">
-      Initializing AI Instructor System...
-    </div>
-
-    <!-- Speech & Teacher Control Suite -->
-    <div class="teacher-controls">
-      <button class="teacher-btn" onclick="playCurrentTopicSpeech()" aria-label="Play Speech">▶ Play</button>
-      <button class="teacher-btn" onclick="pauseSpeech()" aria-label="Pause Speech">⏸ Pause</button>
-      <button class="teacher-btn" onclick="toggleMute()" id="mute-btn" aria-label="Mute Audio">🔊 Sound</button>
-      <button class="teacher-btn" onclick="replayTopicSpeech()" aria-label="Replay Speech">🔁 Replay</button>
-      
-      <select class="teacher-select" id="speed-select" onchange="changeSpeechRate(this.value)" aria-label="Select Speech Rate">
-        <option value="0.8">0.8x Speed</option>
-        <option value="1.0" selected>1.0x Speed</option>
-        <option value="1.2">1.2x Speed</option>
-      </select>
-
-      <select class="teacher-select" id="voice-select" onchange="changeVoice()" aria-label="Select Voice Engine">
-        <!-- Populated via JS Web Speech Synthesis API -->
-      </select>
-    </div>
-  </div>
-
-  <canvas id="confetti-canvas"></canvas>
-
-  <!-- ========================================================== -->
-  <!-- LESSON 1 CONTENT CONTAINER                                 -->
-  <!-- PASTE YOUR ENTIRE UNTOUCHED LESSON 1 CODE INSIDE THIS AREA -->
-  <!-- ========================================================== -->
-  <main class="lesson-container">
-
-    <!-- Topic 1: Learning Objectives -->
-    <section class="topic-section" id="learning-objectives" data-topic="Learning Objectives">
-      <h2>1. Learning Objectives</h2>
-      <!-- PASTE YOUR ORIGINAL LESSON 1 CODE HERE (UNALTERED) -->
-      <p>By the end of this lesson, you will understand the fundamentals of electric charge, current flow, atomic structure, and safety principles in electrical engineering.</p>
-      
-      <!-- ADD-ON: Pure CSS/SVG Animated Educational Scene -->
-      <div class="edu-anim-container" aria-hidden="true">
-        <svg width="100%" height="100%" viewBox="0 0 400 180">
-          <rect x="50" y="30" width="300" height="120" rx="10" fill="#2c3e50"/>
-          <text x="200" y="80" fill="#ecf0f1" font-size="18" text-anchor="middle">🎓 EngineerHub Classroom</text>
-          <circle cx="100" cy="120" r="15" fill="#f1c40f"/>
-          <circle cx="300" cy="120" r="15" fill="#e74c3c"/>
+    <!-- Learning Objectives -->
+    <section class="section-card" id="learning-objectives">
+      <h2>Learning Objectives</h2>
+      <ul>
+        <li>Understand the fundamental nature of electric charge.</li>
+        <li>Explain the movement of electrons in conductors.</li>
+        <li>Identify everyday applications and safety principles of electricity.</li>
+      </ul>
+      <div class="animated-scene">
+        <svg width="100%" height="100%" viewBox="0 0 400 150">
+          <rect x="50" y="30" width="300" height="90" fill="none" stroke="#00ffcc" stroke-width="2" rx="5"/>
+          <text x="70" y="60" fill="#fff" font-size="14">✔ Fundamentals of Charge</text>
+          <text x="70" y="85" fill="#fff" font-size="14">✔ Electron Flow Mechanics</text>
+          <text x="70" y="110" fill="#fff" font-size="14">✔ Engineering Applications</text>
         </svg>
       </div>
     </section>
 
-    <!-- Topic 2: Introduction -->
-    <section class="topic-section" id="introduction" data-topic="Introduction">
-      <h2>2. Introduction</h2>
-      <p>Welcome to Lesson 1. Electricity is the backbone of modern civilization powering industries, homes, and global infrastructure.</p>
-    </section>
-
-    <!-- Topic 3: What is Electricity -->
-    <section class="topic-section" id="what-is-electricity" data-topic="What is Electricity">
-      <h2>3. What is Electricity</h2>
-      <p>Electricity is a form of energy resulting from the existence of charged particles such as electrons or protons.</p>
-      
-      <!-- ADD-ON: Atom Electron Orbit Animation -->
-      <div class="edu-anim-container" aria-hidden="true">
-        <div style="position:relative; width:150px; height:150px; display:flex; align-items:center; justify-content:center;">
-          <div style="width:30px; height:30px; background:#e74c3c; border-radius:50%; position:absolute;"></div>
-          <div class="electron"></div>
-        </div>
+    <!-- Introduction -->
+    <section class="section-card" id="introduction">
+      <h2>Introduction</h2>
+      <p>Welcome to Lesson 1. Electricity is the backbone of modern technology, powering everything from household lights to complex industrial machinery and digital microprocessors.</p>
+      <div class="animated-scene">
+        <svg width="100%" height="100%" viewBox="0 0 400 150">
+          <!-- Classroom Animated SVG -->
+          <rect x="20" y="20" width="360" height="110" fill="#2d3748" rx="5"/>
+          <circle cx="200" cy="75" r="25" fill="#ff9900">
+            <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M 195 75 L 205 75 M 200 70 L 200 80" stroke="#fff" stroke-width="3"/>
+          <text x="145" y="120" fill="#a0aec0" font-size="12">Interactive Classroom</text>
+        </svg>
       </div>
     </section>
 
-    <!-- Topic 4: Scientific Definition -->
-    <section class="topic-section" id="scientific-definition" data-topic="Scientific Definition">
-      <h2>4. Scientific Definition</h2>
-      <p>Scientifically, electrical current is defined as the rate of flow of electric charge past a point or region per unit time: $I = \frac{dQ}{dt}$.</p>
-    </section>
-
-    <!-- Topic 5: Simple Definition -->
-    <section class="topic-section" id="simple-definition" data-topic="Simple Definition">
-      <h2>5. Simple Definition</h2>
-      <p>In simple terms, electricity works just like water moving inside a pressurized pipe.</p>
-      
-      <!-- ADD-ON: Water Pipe Hydraulic Analogy -->
-      <div class="edu-anim-container" aria-hidden="true">
-        <div class="pipe-flow"></div>
+    <!-- What is Electricity -->
+    <section class="section-card" id="what-is-electricity">
+      <h2>What is Electricity</h2>
+      <p>Electricity is a form of energy resulting from the existence of charged particles (such as electrons or protons), either statically as an accumulation of charge or dynamically as a current.</p>
+      <div class="animated-scene">
+        <svg width="100%" height="100%" viewBox="0 0 400 150">
+          <circle cx="200" cy="75" r="15" fill="#ff4757"/>
+          <ellipse cx="200" cy="75" rx="80" ry="30" fill="none" stroke="#70a1ff" stroke-width="1.5"/>
+          <circle cx="280" cy="75" r="6" fill="#1e90ff">
+            <animateTransform attributeName="transform" type="rotate" from="0 200 75" to="360 200 75" dur="3s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
       </div>
     </section>
 
-    <!-- Topic 6: Real-life Explanation -->
-    <section class="topic-section" id="real-life-explanation" data-topic="Real-life Explanation">
-      <h2>6. Real-life Explanation</h2>
-      <p>Consider a flashlight circuit with a battery source, a controlling switch, and a light bulb load.</p>
+    <!-- Scientific Definition -->
+    <section class="section-card" id="scientific-definition">
+      <h2>Scientific Definition</h2>
+      <p>Scientifically, electricity is the set of physical phenomena associated with the presence and motion of matter that has a property of electric charge.</p>
+      <div class="animated-scene">
+        <svg width="100%" height="100%" viewBox="0 0 400 150">
+          <line x1="50" y1="75" x2="350" y2="75" stroke="#fffa65" stroke-width="4" stroke-dasharray="10 5">
+            <animate attributeName="stroke-dashoffset" from="30" to="0" dur="1s" repeatCount="indefinite"/>
+          </line>
+        </svg>
+      </div>
     </section>
 
-    <!-- Topic 7: Characteristics -->
-    <section class="topic-section" id="characteristics" data-topic="Characteristics">
-      <h2>7. Characteristics</h2>
-      <p>Electricity is invisible, highly energetic, capable of instantaneous transfer, and convertible into light, heat, and motion.</p>
+    <!-- Simple Definition -->
+    <section class="section-card" id="simple-definition">
+      <h2>Simple Definition</h2>
+      <p>In simple terms: Imagine electricity as water flowing through a pipe. The water molecules represent electrons, and the pipe represents a conducting wire.</p>
+      <div class="animated-scene">
+        <svg width="100%" height="100%" viewBox="0 0 400 150">
+          <rect x="50" y="55" width="300" height="40" fill="none" stroke="#a4b0be" stroke-width="4"/>
+          <circle cx="70" cy="75" r="8" fill="#70a1ff">
+            <animate attributeName="cx" from="70" to="330" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="120" cy="75" r="8" fill="#70a1ff">
+            <animate attributeName="cx" from="70" to="330" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
     </section>
 
-    <!-- Topic 8: Interesting Facts -->
-    <section class="topic-section" id="interesting-facts" data-topic="Interesting Facts">
-      <h2>8. Interesting Facts</h2>
-      <p>A single bolt of lightning contains up to 1 billion volts of electricity!</p>
+    <!-- Real-life Explanation -->
+    <section class="section-card" id="real-life-explanation">
+      <h2>Real-life Explanation</h2>
+      <p>When you flip a wall switch, an electrical circuit closes, allowing voltage to push electrons through the bulb's filament, converting electrical energy into light and heat.</p>
+      <div class="animated-scene">
+        <svg width="100%" height="100%" viewBox="0 0 400 150">
+          <rect x="80" y="50" width="40" height="50" fill="#ced6e0" rx="3"/>
+          <circle cx="300" cy="75" r="20" fill="#eccc68">
+            <animate attributeName="fill" values="#57606f;#ffdd59;#57606f" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <path d="M 120 75 L 280 75" stroke="#ffa502" stroke-width="3"/>
+        </svg>
+      </div>
     </section>
 
-    <!-- Topic 9: Applications -->
-    <section class="topic-section" id="applications" data-topic="Applications">
-      <h2>9. Applications</h2>
-      <p>Used widely across residential homes, industrial manufacturing, hospitals, electric transport, and green grids.</p>
+    <!-- Characteristics -->
+    <section class="section-card" id="characteristics">
+      <h2>Characteristics</h2>
+      <ul>
+        <li>Invisible energy flow.</li>
+        <li>Travels near the speed of light.</li>
+        <li>Easily transformed into light, heat, or mechanical energy.</li>
+      </ul>
+      <div class="animated-scene">
+        <svg width="100%" height="100%" viewBox="0 0 400 150">
+          <path d="M 50 75 Q 100 20 150 75 T 250 75 T 350 75" fill="none" stroke="#2ed573" stroke-width="3">
+            <animate attributeName="d" values="M 50 75 Q 100 20 150 75 T 250 75 T 350 75; M 50 75 Q 100 130 150 75 T 250 75 T 350 75; M 50 75 Q 100 20 150 75 T 250 75 T 350 75" dur="2s" repeatCount="indefinite"/>
+          </path>
+        </svg>
+      </div>
     </section>
 
-    <!-- Topic 10: Roadmap -->
-    <section class="topic-section" id="roadmap" data-topic="Roadmap">
-      <h2>10. Roadmap</h2>
-      <p>Your journey: Fundamentals → Circuits → Electromagnetism → Power Systems.</p>
+    <!-- Summary -->
+    <section class="section-card" id="summary">
+      <h2>Summary</h2>
+      <p>Electricity is the flow of charge (electrons) driven by potential difference. It is versatile, efficient, and fundamental to modern engineering.</p>
     </section>
 
-    <!-- Topic 11: Illustrations -->
-    <section class="topic-section" id="illustrations" data-topic="Illustrations">
-      <h2>11. Illustrations</h2>
-      <p>Review comprehensive schematics and wiring diagrams.</p>
+    <!-- Quiz -->
+    <section class="section-card" id="quiz">
+      <h2>Quiz</h2>
+      <p><strong>Q1: What particle movement constitutes an electric current in a wire?</strong></p>
+      <button class="quiz-option" onclick="checkAnswer(this, false)">Protons</button>
+      <button class="quiz-option" onclick="checkAnswer(this, true)">Electrons</button>
+      <button class="quiz-option" onclick="checkAnswer(this, false)">Neutrons</button>
     </section>
 
-    <!-- Topic 12: Advantages -->
-    <section class="topic-section" id="advantages" data-topic="Advantages">
-      <h2>12. Advantages</h2>
-      <p>High efficiency, instant power distribution, clean point-of-use operation.</p>
-    </section>
-
-    <!-- Topic 13: Limitations -->
-    <section class="topic-section" id="limitations" data-topic="Limitations">
-      <h2>13. Limitations & Safety</h2>
-      <p>Requires strict insulation and grounding. Electrical shock hazards demand caution.</p>
-    </section>
-
-    <!-- Topic 14: Interview Questions -->
-    <section class="topic-section" id="interview-questions" data-topic="Interview Questions">
-      <h2>14. Interview Questions</h2>
-      <p>Q: What is the velocity of electron drift? A: Extremely slow, despite current propagation being near light speed.</p>
-    </section>
-
-    <!-- Topic 15: Summary -->
-    <section class="topic-section" id="summary" data-topic="Summary">
-      <h2>15. Summary</h2>
-      <p>Recap: Atoms consist of charge carriers. Potential difference drives electron drift producing current.</p>
-    </section>
-
-    <!-- Topic 16: Quiz -->
-    <section class="topic-section" id="quiz" data-topic="Quiz">
-      <h2>16. Knowledge Quiz</h2>
-      <p>Test your knowledge below:</p>
-      <button class="teacher-btn" onclick="triggerQuizSuccess()" style="padding:10px 16px;">Submit Test Answer (Demonstration)</button>
-    </section>
-
-    <!-- Topic 17: Completion -->
-    <section class="topic-section" id="completion" data-topic="Completion">
-      <h2>17. Completion & Certificate</h2>
+    <!-- Completion -->
+    <section class="section-card" id="completion">
+      <h2>Lesson Completion</h2>
       <p>Congratulations on completing Lesson 1!</p>
     </section>
 
   </main>
 
-  <!-- ========================================== -->
-  <!-- YOUR EXISTING LESSON 1 JAVASCRIPT GOES HERE-->
-  <!-- ========================================== -->
-  <script>
-    /* ---------------------------------------------------- */
-    /* PLACE ALL YOUR UNTOUCHED LESSON 1 JS FUNCTIONS HERE */
-    /* ---------------------------------------------------- */
-  </script>
+  <!-- AI Teacher Sidebar -->
+  <aside class="teacher-sidebar">
+    <div class="teacher-card">
+      <!-- 2D Animated Vector Teacher Body -->
+      <svg id="teacher-svg" viewBox="0 0 200 220" aria-label="AI Animated Teacher">
+        <g class="breathing">
+          <!-- Torso / Blue Shirt -->
+          <path d="M 60 140 L 140 140 L 150 220 L 50 220 Z" fill="#0066cc" />
+          <!-- ID Card -->
+          <rect x="110" y="150" width="18" height="25" rx="2" fill="#ffffff" stroke="#ccc"/>
+          <rect x="114" y="155" width="10" height="3" fill="#0066cc"/>
+          <!-- Neck -->
+          <rect x="90" y="120" width="20" height="25" fill="#f1c27d" />
+          <!-- Head -->
+          <g class="head" id="teacher-head">
+            <ellipse cx="100" cy="85" rx="35" ry="40" fill="#f1c27d" />
+            <!-- Hair -->
+            <path d="M 65 80 Q 100 30 135 80 Q 100 60 65 80 Z" fill="#2c3e50" />
+            <!-- Eyes -->
+            <ellipse class="eye" cx="88" cy="80" rx="4" ry="6" fill="#2c3e50" />
+            <ellipse class="eye" cx="112" cy="80" rx="4" ry="6" fill="#2c3e50" />
+            <!-- Eyebrows -->
+            <path id="eyebrow-left" d="M 82 70 Q 88 68 94 70" stroke="#2c3e50" stroke-width="2" fill="none"/>
+            <path id="eyebrow-right" d="M 106 70 Q 112 68 118 70" stroke="#2c3e50" stroke-width="2" fill="none"/>
+            <!-- Headset Mic -->
+            <path d="M 65 85 Q 60 105 85 105" stroke="#111" stroke-width="2" fill="none"/>
+            <circle cx="85" cy="105" r="3" fill="#ff9900"/>
+            <!-- Mouth -->
+            <path class="mouth" id="teacher-mouth" d="M 90 105 Q 100 110 110 105" stroke="#a0522d" stroke-width="3" fill="none" />
+          </g>
+          <!-- Left Arm -->
+          <path class="arm-left" id="arm-left" d="M 60 140 Q 40 170 50 200" stroke="#0066cc" stroke-width="14" stroke-linecap="round" fill="none"/>
+          <!-- Right Arm -->
+          <path class="arm-right" id="arm-right" d="M 140 140 Q 160 170 150 200" stroke="#0066cc" stroke-width="14" stroke-linecap="round" fill="none"/>
+        </g>
+      </svg>
 
-  <!-- ========================================== -->
-  <!-- AI AVATAR ENGINE & SPEECH SYNTHESIS JS    -->
-  <!-- ========================================== -->
-  <script>
-    /* --- Explanation Knowledge Base for Speech Subsystem --- */
-    const TOPIC_SPEECH_DATA = {
-      "Learning Objectives": "Hello everyone! Welcome to EngineerHub. In this lesson, we will cover the core fundamentals of electrical engineering.",
-      "Introduction": "Electricity powers our modern world. Let's explore how charge carriers create usable work.",
-      "What is Electricity": "Hello everyone. Now we are going to learn what electricity is. Electricity is the movement of electrons through a conductor. Imagine water flowing inside a pipe. Electricity behaves in a similar way. Let's understand this with the diagram below.",
-      "Scientific Definition": "Scientifically, electricity is quantified by charge rate over time. Current equals rate of change of electric charge.",
-      "Simple Definition": "Think of voltage as water pressure, and current as the volume of water moving through a pipe.",
-      "Real-life Explanation": "When you turn on a light switch, you close an electrical circuit allowing current to flow continuously from source to load.",
-      "Characteristics": "Now let's learn the characteristics of electricity. Electricity cannot be seen directly. It travels through conductors. It can be converted into heat, light, and motion. These are fundamental properties every engineer should know.",
-      "Interesting Facts": "Did you know lightning strikes reach temperatures hotter than the surface of the sun?",
-      "Applications": "From electric vehicles to high-voltage power grids, electricity powers every sector.",
-      "Roadmap": "Here is your learning map to master power and electronics systems.",
-      "Illustrations": "Pay close attention to these circuit diagrams and schematic symbols.",
-      "Advantages": "Electricity offers unmatched efficiency and rapid energy delivery.",
-      "Limitations": "Safety is vital. Uncontrolled high voltage creates shock hazards.",
-      "Interview Questions": "These key questions are frequently asked in engineering technical interviews.",
-      "Summary": "Let's review the main takeaways before testing your understanding.",
-      "Quiz": "Try your best on this interactive quiz. Good luck!",
-      "Completion": "Great job! Excellent work! You have successfully completed Lesson 1!"
+      <!-- Subtitle Box -->
+      <div class="subtitle-box" id="subtitles" aria-live="polite">Initializing AI Teacher...</div>
+
+      <!-- Controls -->
+      <div class="teacher-controls">
+        <button onclick="playSpeech()" aria-label="Play">▶</button>
+        <button onclick="pauseSpeech()" aria-label="Pause">⏸</button>
+        <button onclick="toggleMute()" id="mute-btn" aria-label="Mute">🔊</button>
+        <button onclick="replaySpeech()" aria-label="Replay">🔁</button>
+        <button onclick="skipTopic()" aria-label="Skip">⏭</button>
+      </div>
+
+      <!-- Speech Settings -->
+      <div class="control-panel-settings">
+        <label>Speed: <input type="range" id="rate" min="0.5" max="1.5" step="0.1" value="1"></label>
+        <label>Volume: <input type="range" id="vol" min="0" max="1" step="0.1" value="1"></label>
+        <label>Voice: <select id="voice-select"></select></label>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+  /* Explanations Data Map */
+  const topicExplanations = {
+    'learning-objectives': "Welcome to Lesson 1. In this module, we will explore electric charges, electron movement, and modern application fundamentals.",
+    'introduction': "Hello everyone! Now we are going to learn what electricity is. It forms the foundation of all electrical engineering disciplines.",
+    'what-is-electricity': "Electricity is the movement of electrons through a conductor. Imagine water flowing inside a pipe. Electricity behaves in a similar way.",
+    'scientific-definition': "Scientifically, electricity is associated with the presence and movement of charge vectors across electric fields.",
+    'simple-definition': "Simply put, it is energy transferred by moving electrons from point A to point B.",
+    'real-life-explanation': "Think of a light switch. Closing the circuit lets voltage push electrons into the filament to emit light.",
+    'characteristics': "Now let's learn the characteristics of electricity. It travels rapidly, cannot be seen directly, and transforms easily into heat, light, and motion.",
+    'summary': "In summary, electricity is controllable electron movement capable of delivering work across devices.",
+    'quiz': "Try your best on this quick evaluation question!",
+    'completion': "Outstanding job completing this module! You have mastered the fundamentals of Lesson 1."
+  };
+
+  /* Speech Synthesis Engine setup */
+  const synth = window.speechSynthesis;
+  let currentUtterance = null;
+  let isMuted = false;
+  let currentSectionId = '';
+
+  const subtitlesEl = document.getElementById('subtitles');
+  const mouthEl = document.getElementById('teacher-mouth');
+  const armRightEl = document.getElementById('arm-right');
+  const armLeftEl = document.getElementById('arm-left');
+  const voiceSelect = document.getElementById('voice-select');
+
+  function populateVoices() {
+    if(!synth) return;
+    const voices = synth.getVoices();
+    voiceSelect.innerHTML = '';
+    voices.forEach((v, i) => {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `${v.name} (${v.lang})`;
+      if(v.default) opt.selected = true;
+      voiceSelect.appendChild(opt);
+    });
+  }
+
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoices;
+  }
+
+  /* Teacher SVG Animations */
+  function setTeacherState(state) {
+    // Reset poses
+    armRightEl.setAttribute('d', 'M 140 140 Q 160 170 150 200');
+    armLeftEl.setAttribute('d', 'M 60 140 Q 40 170 50 200');
+    
+    if(state === 'speaking') {
+      armRightEl.setAttribute('d', 'M 140 140 Q 170 140 150 110'); // gesturing
+    } else if(state === 'pointing') {
+      armLeftEl.setAttribute('d', 'M 60 140 L 10 100'); // point left
+    } else if(state === 'celebrate') {
+      armRightEl.setAttribute('d', 'M 140 140 L 170 80');
+      armLeftEl.setAttribute('d', 'M 60 140 L 30 80');
+    }
+  }
+
+  let mouthInterval = null;
+  function startTalkingAnimation() {
+    stopTalkingAnimation();
+    mouthInterval = setInterval(() => {
+      const open = Math.random() > 0.5;
+      mouthEl.setAttribute('d', open ? 'M 90 105 Q 100 120 110 105' : 'M 90 105 Q 100 107 110 105');
+    }, 150);
+  }
+
+  function stopTalkingAnimation() {
+    clearInterval(mouthInterval);
+    mouthEl.setAttribute('d', 'M 90 105 Q 100 110 110 105');
+  }
+
+  /* Speak Function */
+  function speakText(text) {
+    if(!synth) return;
+    synth.cancel();
+    stopTalkingAnimation();
+
+    if(isMuted) {
+      subtitlesEl.textContent = text;
+      return;
+    }
+
+    currentUtterance = new SpeechSynthesisUtterance(text);
+    currentUtterance.rate = parseFloat(document.getElementById('rate').value);
+    currentUtterance.volume = parseFloat(document.getElementById('vol').value);
+    
+    const voices = synth.getVoices();
+    if(voices[voiceSelect.value]) {
+      currentUtterance.voice = voices[voiceSelect.value];
+    }
+
+    currentUtterance.onstart = () => {
+      subtitlesEl.textContent = text;
+      setTeacherState('speaking');
+      startTalkingAnimation();
     };
 
-    /* --- Speech State Variables --- */
-    let synth = window.speechSynthesis;
-    let currentUtterance = null;
-    let speechMuted = false;
-    let speechRate = 1.0;
-    let selectedVoice = null;
-    let activeTopic = "";
-    let typingTimer = null;
+    currentUtterance.onend = () => {
+      setTeacherState('idle');
+      stopTalkingAnimation();
+    };
 
-    /* --- DOM Elements --- */
-    const widget = document.getElementById('ai-teacher-widget');
-    const subtitleBox = document.getElementById('teacher-subtitle');
-    const voiceSelect = document.getElementById('voice-select');
+    synth.speak(currentUtterance);
+  }
 
-    /* --- Initialize Speech Engine & Voices --- */
-    function populateVoices() {
-      if (!synth) return;
-      let voices = synth.getVoices();
-      voiceSelect.innerHTML = '';
-      voices.forEach((v, index) => {
-        let opt = document.createElement('option');
-        opt.value = index;
-        opt.textContent = `${v.name} (${v.lang})`;
-        if (v.default || v.lang.startsWith('en')) opt.selected = true;
-        voiceSelect.appendChild(opt);
-      });
-      if (voices.length > 0) {
-        selectedVoice = voices[voiceSelect.value] || voices[0];
-      }
+  /* Controls */
+  function playSpeech() {
+    if (synth.paused) {
+      synth.resume();
+      startTalkingAnimation();
+    } else if (currentSectionId) {
+      speakText(topicExplanations[currentSectionId]);
     }
+  }
 
-    if (speechSynthesis.onvoiceschanged !== undefined) {
-      speechSynthesis.onvoiceschanged = populateVoices;
+  function pauseSpeech() {
+    if (synth.speaking) {
+      synth.pause();
+      stopTalkingAnimation();
     }
+  }
 
-    /* --- Avatar Pose Controls --- */
-    function setAvatarState(state) {
-      widget.classList.remove('state-speaking', 'state-pointing', 'state-thinking');
-      if (state) widget.classList.add(state);
-    }
+  function toggleMute() {
+    isMuted = !isMuted;
+    document.getElementById('mute-btn').textContent = isMuted ? '🔇' : '🔊';
+    if(isMuted) synth.cancel();
+  }
 
-    /* --- Subtitle Typing Animation Engine --- */
-    function renderSubtitleText(text) {
-      clearTimeout(typingTimer);
-      subtitleBox.textContent = '';
-      let i = 0;
-      function typeChar() {
-        if (i < text.length) {
-          subtitleBox.textContent += text.charAt(i);
-          i++;
-          typingTimer = setTimeout(typeChar, 25);
+  function replaySpeech() {
+    if (currentSectionId) speakText(topicExplanations[currentSectionId]);
+  }
+
+  function skipTopic() {
+    synth.cancel();
+  }
+
+  /* Intersection Observer for Auto Speech and Progress Tracking */
+  const sections = document.querySelectorAll('.section-card');
+  const progressBar = document.getElementById('progress-bar');
+
+  const observerOptions = {
+    root: null,
+    threshold: 0.5
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        currentSectionId = entry.target.id;
+        if(topicExplanations[currentSectionId]) {
+          speakText(topicExplanations[currentSectionId]);
         }
       }
-      typeChar();
-    }
-
-    /* --- Core Speech Controller --- */
-    function speakText(text) {
-      if (!synth) return;
-      synth.cancel();
-
-      if (speechMuted) {
-        renderSubtitleText(text);
-        setAvatarState('state-pointing');
-        return;
-      }
-
-      currentUtterance = new SpeechSynthesisUtterance(text);
-      currentUtterance.rate = speechRate;
-      if (selectedVoice) currentUtterance.voice = selectedVoice;
-
-      currentUtterance.onstart = () => {
-        setAvatarState('state-speaking');
-        renderSubtitleText(text);
-      };
-
-      currentUtterance.onend = () => {
-        setAvatarState('');
-      };
-
-      currentUtterance.onerror = () => {
-        setAvatarState('');
-      };
-
-      synth.speak(currentUtterance);
-    }
-
-    function playCurrentTopicSpeech() {
-      if (activeTopic && TOPIC_SPEECH_DATA[activeTopic]) {
-        speakText(TOPIC_SPEECH_DATA[activeTopic]);
-      }
-    }
-
-    function pauseSpeech() {
-      if (synth) synth.pause();
-      setAvatarState('');
-    }
-
-    function toggleMute() {
-      speechMuted = !speechMuted;
-      document.getElementById('mute-btn').textContent = speechMuted ? "🔇 Muted" : "🔊 Sound";
-      if (speechMuted && synth) synth.cancel();
-    }
-
-    function replayTopicSpeech() {
-      playCurrentTopicSpeech();
-    }
-
-    function changeSpeechRate(val) {
-      speechRate = parseFloat(val);
-      playCurrentTopicSpeech();
-    }
-
-    function changeVoice() {
-      let voices = synth.getVoices();
-      selectedVoice = voices[voiceSelect.value];
-      playCurrentTopicSpeech();
-    }
-
-    function toggleWidgetCollapse() {
-      widget.classList.toggle('collapsed');
-      const btn = document.getElementById('toggle-collapse-btn');
-      btn.textContent = widget.classList.contains('collapsed') ? "➕" : "_";
-    }
-
-    /* --- Intersection Observer Topic Auto-Detection --- */
-    function initTopicObserver() {
-      const sections = document.querySelectorAll('.topic-section');
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -40% 0px',
-        threshold: 0.3
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const topicName = entry.target.getAttribute('data-topic');
-            if (topicName && topicName !== activeTopic) {
-              activeTopic = topicName;
-              playCurrentTopicSpeech();
-            }
-          }
-        });
-      }, observerOptions);
-
-      sections.forEach(sec => observer.observe(sec));
-    }
-
-    /* --- Quiz Success & Celebration Confetti --- */
-    function triggerQuizSuccess() {
-      setAvatarState('state-speaking');
-      speakText("Excellent job! You answered correctly!");
-      
-      const canvas = document.getElementById('confetti-canvas');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      let particles = Array.from({length: 80}, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height - canvas.height,
-        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-        size: Math.random() * 8 + 4,
-        speed: Math.random() * 3 + 2
-      }));
-
-      function renderConfetti() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-          p.y += p.speed;
-          ctx.fillStyle = p.color;
-          ctx.fillRect(p.x, p.y, p.size, p.size);
-        });
-        if (particles.some(p => p.y < canvas.height)) {
-          requestAnimationFrame(renderConfetti);
-        }
-      }
-      renderConfetti();
-    }
-
-    /* Initialization */
-    window.addEventListener('DOMContentLoaded', () => {
-      populateVoices();
-      initTopicObserver();
-      setAvatarState('state-pointing');
     });
-  </script>
+  }, observerOptions);
+
+  sections.forEach(sec => observer.observe(sec));
+
+  /* Progress Bar Updating */
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    progressBar.style.width = scrolled + "%";
+  });
+
+  /* Quiz Logic */
+  function checkAnswer(btn, isCorrect) {
+    const parent = btn.parentElement;
+    const options = parent.querySelectorAll('.quiz-option');
+    options.forEach(opt => opt.disabled = true);
+
+    if(isCorrect) {
+      btn.classList.add('correct');
+      setTeacherState('celebrate');
+      speakText("Excellent! That is correct. Electrons are the primary charge carriers in metallic conductors.");
+    } else {
+      btn.classList.add('wrong');
+      setTeacherState('pointing');
+      speakText("Not quite! Remember, electrons move freely in conductors to establish electric current.");
+    }
+  }
+
+  // Initial Voice Loading
+  populateVoices();
+</script>
 </body>
 </html>
