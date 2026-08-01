@@ -6,114 +6,134 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lesson 2 - Voltage, Current & Resistance</title>
+<title>EngineerHub | Lesson 2 - Voltage</title>
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f7fb;
+background:#f4f7fb;
+color:#333;
+line-height:1.8;
 }
 
 header{
-    background:#0b5ed7;
-    color:white;
-    text-align:center;
-    padding:20px;
+background:#0b5ed7;
+color:white;
+text-align:center;
+padding:25px;
 }
 
 .container{
-    width:90%;
-    max-width:900px;
-    margin:30px auto;
+width:90%;
+max-width:1000px;
+margin:30px auto;
 }
 
 .lesson-box{
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.15);
-}
-
-h2,h3{
-    color:#0b5ed7;
-}
-
-p{
-    line-height:1.8;
-    color:#444;
-}
-
-ul{
-    line-height:2;
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
 }
 
 .progress{
-    background:#ddd;
-    border-radius:20px;
-    overflow:hidden;
-    margin-bottom:25px;
+width:100%;
+background:#ddd;
+border-radius:30px;
+overflow:hidden;
+margin-bottom:30px;
 }
 
 .progress-bar{
-    width:28%;
-    background:#0b5ed7;
-    color:white;
-    text-align:center;
-    padding:8px 0;
+width:20%;
+background:#0b5ed7;
+padding:10px;
+color:white;
+text-align:center;
+font-weight:bold;
 }
 
-.info-box{
-    background:#eef4ff;
-    padding:15px;
-    border-left:5px solid #0b5ed7;
-    border-radius:6px;
-    margin:20px 0;
+h2{
+color:#0b5ed7;
+margin-top:30px;
+margin-bottom:15px;
+}
+
+h3{
+color:#0b5ed7;
+margin-top:25px;
+margin-bottom:10px;
+}
+
+.info{
+background:#eef5ff;
+border-left:6px solid #0b5ed7;
+padding:18px;
+margin:20px 0;
+border-radius:8px;
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
 }
 
 table,th,td{
-    border:1px solid #ccc;
+border:1px solid #ccc;
 }
 
 th{
-    background:#0b5ed7;
-    color:white;
+background:#0b5ed7;
+color:white;
 }
 
 th,td{
-    padding:12px;
-    text-align:center;
+padding:12px;
+text-align:left;
+}
+
+ul{
+margin-left:20px;
 }
 
 .btn-group{
-    margin-top:30px;
+margin-top:40px;
+display:flex;
+justify-content:space-between;
 }
 
 .btn{
-    display:inline-block;
-    background:#0b5ed7;
-    color:white;
-    text-decoration:none;
-    padding:12px 25px;
-    border-radius:6px;
-    margin-right:10px;
+background:#0b5ed7;
+color:white;
+padding:12px 28px;
+text-decoration:none;
+border-radius:6px;
 }
 
 .btn:hover{
-    background:#084298;
+background:#084298;
+}
+
+.quiz{
+background:#fff8e7;
+padding:20px;
+border-left:6px solid orange;
+border-radius:8px;
+margin-top:30px;
 }
 
 footer{
-    text-align:center;
-    color:#666;
-    padding:20px;
+text-align:center;
+padding:20px;
+color:#666;
 }
 
 </style>
@@ -125,6 +145,7 @@ footer{
 <header>
 
 <h1>EngineerHub</h1>
+
 <p>Electrical Fundamentals</p>
 
 </header>
@@ -134,138 +155,169 @@ footer{
 <div class="lesson-box">
 
 <div class="progress">
+
 <div class="progress-bar">
-Lesson 2 / 7
-</div>
+
+Lesson 2 / 10
+
 </div>
 
-<h2>Lesson 2 - Voltage, Current & Resistance</h2>
+</div>
+
+<h1>Lesson 2 : Voltage (Complete Guide)</h1>
 
 <p>
 
-Voltage, Current and Resistance are the three basic quantities in every electrical circuit.
-Understanding these concepts is essential before learning Ohm's Law and circuit analysis.
+In this lesson, you will learn everything about <b>Voltage</b>, one of the most important concepts in electrical engineering.
+
+After completing this lesson, you will understand what voltage is, how it is produced, where it is used, how to measure it, and how it affects electrical circuits.
 
 </p>
 
-<h3>1. Voltage (V)</h3>
+<hr>
+
+<h2>1. What is Voltage?</h2>
 
 <p>
 
 Voltage is the electrical pressure that pushes electrons through a conductor.
 
+Without voltage, electrons cannot move.
+
+Without electron movement, no current flows.
+
+Therefore, voltage is the driving force of every electrical circuit.
+
 </p>
 
-<div class="info-box">
+<div class="info">
 
-<b>Unit:</b> Volt (V)<br>
-<b>Measured using:</b> Voltmeter<br>
-<b>Symbol:</b> V
+<b>Simple Definition:</b>
+
+Voltage is the force that pushes electric charges through a wire.
 
 </div>
 
-<h3>2. Current (I)</h3>
+<h2>2. Real-Life Example</h2>
 
 <p>
 
-Current is the flow of electric charge through a conductor.
+Imagine a water tank connected to a pipe.
 
 </p>
-
-<div class="info-box">
-
-<b>Unit:</b> Ampere (A)<br>
-<b>Measured using:</b> Ammeter<br>
-<b>Symbol:</b> I
-
-</div>
-
-<h3>3. Resistance (R)</h3>
-
-<p>
-
-Resistance is the opposition offered to the flow of electric current.
-
-</p>
-
-<div class="info-box">
-
-<b>Unit:</b> Ohm (Ω)<br>
-<b>Measured using:</b> Multimeter (Ohm Mode)<br>
-<b>Symbol:</b> R
-
-</div>
-
-<h3>Comparison Table</h3>
 
 <table>
 
 <tr>
-<th>Quantity</th>
-<th>Symbol</th>
-<th>Unit</th>
-<th>Instrument</th>
+
+<th>Water System</th>
+
+<th>Electrical System</th>
+
 </tr>
 
 <tr>
+
+<td>Water</td>
+
+<td>Electrons</td>
+
+</tr>
+
+<tr>
+
+<td>Water Pressure</td>
+
 <td>Voltage</td>
-<td>V</td>
-<td>Volt</td>
-<td>Voltmeter</td>
+
 </tr>
 
 <tr>
+
+<td>Water Flow</td>
+
 <td>Current</td>
-<td>I</td>
-<td>Ampere</td>
-<td>Ammeter</td>
+
 </tr>
 
 <tr>
-<td>Resistance</td>
-<td>R</td>
-<td>Ohm (Ω)</td>
-<td>Multimeter</td>
+
+<td>Pipe</td>
+
+<td>Wire</td>
+
 </tr>
 
 </table>
 
-<h3>Key Points</h3>
+<p>
 
-<ul>
+When water pressure increases, more water flows.
 
-<li>Voltage pushes electrons.</li>
+Similarly, when voltage increases, electrons get more force to move.
 
-<li>Current is the flow of electrons.</li>
+</p>
 
-<li>Resistance opposes current flow.</li>
+<h2>3. Scientific Definition</h2>
 
-<li>All electrical circuits contain these three quantities.</li>
+<p>
 
-</ul>
+Voltage is the difference in electric potential between two points.
 
-<div class="btn-group">
+It is also called <b>Potential Difference</b>.
 
-<a href="lesson1.html" class="btn">
-⬅ Previous
-</a>
+The greater the potential difference, the greater the ability to push electrons.
 
-<a href="lesson3.html" class="btn">
-Next ➜
-</a>
+</p>
 
-</div>
+<div class="info">
+
+Voltage = Electrical Pressure
 
 </div>
 
-</div>
+<h2>4. Unit of Voltage</h2>
 
-<footer>
+<table>
 
-© 2026 EngineerHub
+<tr>
 
-</footer>
+<th>Property</th>
 
-</body>
+<th>Value</th>
 
-</html>
+</tr>
+
+<tr>
+
+<td>SI Unit</td>
+
+<td>Volt (V)</td>
+
+</tr>
+
+<tr>
+
+<td>Symbol</td>
+
+<td>V</td>
+
+</tr>
+
+<tr>
+
+<td>Named After</td>
+
+<td>Alessandro Volta</td>
+
+</tr>
+
+<tr>
+
+<td>Measured By</td>
+
+<td>Voltmeter</td>
+
+</tr>
+
+</table>
